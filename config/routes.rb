@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
   
-  resources :users
+  resources :contributors, only: [:create, :update, :index]
+  resources :user_cards, only: [:create, :update, :destroy, :index] do
+    resources :contributors, only: [:index]
+  end
+  resources :templates, only: [:index, :create]
+  resources :categories, only: [:index, :show]
+  resources :users, only: [:show, :create, :update] do
+    resources :user_cards, only: [:index]
+    # resources :contributors, only: [:index]
+  end
 
   post '/signup', to: 'users#create'
   post '/login', to: 'sessions#create'
