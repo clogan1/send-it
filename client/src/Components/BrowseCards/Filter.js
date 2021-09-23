@@ -29,15 +29,14 @@ function Filter() {
         .then(cats => setCategories(cats))
     }, [])
 
-    console.log(categories)
+    // console.log(categories)
 
     return (
         <Box className={classes.filterContainer}>
             {categories.map(category => 
-                <Box className={classes.checkRow}>
+                <Box className={classes.checkRow} key={category.id}>
                 <input
                     type="checkbox" 
-                    key={category.id}
                     name={category.name}
                     className={classes.checkbox}
                 />

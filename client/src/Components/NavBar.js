@@ -1,4 +1,6 @@
+import FormModal from './LoginSignup/FormModal';
 import { NavLink, useLocation } from 'react-router-dom';
+import { useState } from 'react'
 import {
     AppBar,
     Toolbar,
@@ -68,9 +70,14 @@ const useStyles = makeStyles({
 })
 
 
-function NavBar( { user, signoutUser } ) {
+function NavBar( { user, setUser, signoutUser } ) {
     const classes = useStyles()
     const location = useLocation()
+    const [openModal, setOpenModal] = useState(false);
+
+    function handleOpenLogin(){
+        setOpenModal(true)
+    }
 
     return (
         <AppBar 
@@ -119,11 +126,17 @@ function NavBar( { user, signoutUser } ) {
                 <>
                 <Box className={classes.box}>
                     <Typography 
+                        onClick={handleOpenLogin}
                         className={classes.boxText}>
                         log in
                     </Typography>
                 </Box>
                 </>
+            }
+            { openModal ?
+                <FormModal openModal={openModal} setOpenModal={setOpenModal} setUser={setUser}/>
+                :
+                null
             }
             
         </Toolbar>

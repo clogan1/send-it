@@ -37,7 +37,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <NavBar user={user} signoutUser={signoutUser}/>
+      <NavBar user={user} setUser={setUser} signoutUser={signoutUser}/>
       <Switch>
           <Route path='/addcard'>
             <AddCardPage />
