@@ -19,7 +19,7 @@ import {
     }
  })
 
-function Filter() {
+function Filter( { filter, setFilter }) {
     const classes = useStyles()
     const [categories, setCategories] = useState([])
 
@@ -31,6 +31,15 @@ function Filter() {
 
     // console.log(categories)
 
+    function handleCheck(e){
+        if(e.target.checked) {
+            setFilter([...filter, e.target.name])
+        } else {
+            const newFilter = filter.filter(each => each !== e.target.name)
+            setFilter(newFilter)
+        }
+    }
+
     return (
         <Box className={classes.filterContainer}>
             {categories.map(category => 
@@ -39,6 +48,7 @@ function Filter() {
                     type="checkbox" 
                     name={category.name}
                     className={classes.checkbox}
+                    onChange={handleCheck}
                 />
                 <label>&nbsp;{category.emoji} &nbsp;{category.name}</label>
                 <br></br>

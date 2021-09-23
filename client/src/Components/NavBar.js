@@ -118,7 +118,7 @@ function NavBar( { user, setUser, signoutUser } ) {
                 </Box>
                 <Box className={classes.profileBox}>
                     <img className={classes.profilepic} 
-                    src="https://avatars.githubusercontent.com/u/77256559?v=4"/>
+                    src={user.avatar_url} alt={user.username}/>
                 </Box>
 
                 </>

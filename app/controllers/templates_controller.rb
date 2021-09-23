@@ -2,7 +2,7 @@ class TemplatesController < ApplicationController
     before_action :artist_authorize, only: :create
 
     def index
-        render json: Template.all
+        render json: Template.all.order("created_at DESC")
     end
 
     # artists only

@@ -39,7 +39,27 @@ const useStyles = makeStyles({
 function BrowseCardsPage( { cards } ) {
     const classes = useStyles()
     const [filter, setFilter] = useState([])
-    const [sort, setSort] = useState('')
+    const [sort, setSort] = useState('newest')
+
+    const displayCards = cards.filter(card => {
+        if(filter.length < 1){
+            return card
+        } else {
+            return filter.includes(card.category.name)
+        }
+    })
+    .sort((first, second) => {
+        if(sort === 'newest'){
+            if(first.id > second.id) return -1
+        }
+        else if (sort === 'oldest'){
+            if(first.id < second.id) return -1
+
+        }
+        else if (sort === 'popular'){
+            if(first.count_of_user_cards > second.count_of_user_cards) return -1
+        }
+    })
 
     return (
         <Box className={classes.container}>
@@ -47,13 +67,13 @@ function BrowseCardsPage( { cards } ) {
                 <Grid item xs={2} className={classes.filterContainer}>
                     <Box className={classes.filterBox}>
                     <Typography className={classes.filterText}>filter by</Typography>
-                        <Filter />
+                        <Filter filter={filter} setFilter={setFilter}/>
                     <Typography className={classes.filterText}>sort by</Typography>
-                        <Sort />
+                        <Sort sort={sort} setSort={setSort}/>
                     </Box>
                 </Grid>
                 <Grid item xs={10} className={classes.cardContainer}>
-                    <CardList cards={cards}/>
+                    <CardList cards={displayCards}/>
                 </Grid>
 
             </Grid>

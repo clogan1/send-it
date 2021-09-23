@@ -16,15 +16,19 @@ import {
     }
  })
 
-function Sort() {
+function Sort( { sort, setSort }) {
     const classes = useStyles()
+
+    function handleSort(e){
+        setSort(e.target.value)
+    }
 
     return (
         <Box className={classes.box}>
-            <select className={classes.select}>
+            <select className={classes.select} onChange={handleSort}>
                 <option value="newest">newest</option>
                 <option value="popular">popular</option>
-                <option value="newest">oldest</option>
+                <option value="oldest">oldest</option>
             </select>
 
         </Box>
