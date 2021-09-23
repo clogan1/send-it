@@ -1,7 +1,7 @@
 class UserCard < ApplicationRecord
     belongs_to :user
     belongs_to :template
-    has_many :contributors, dependent: :destory 
+    has_many :contributors, dependent: :destroy 
 
     validates :recipient_name, presence: true
     validates :recipient_email, presence: true
