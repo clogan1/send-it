@@ -17,8 +17,9 @@ const useStyles = makeStyles({
    },
    image: {
        width: '200px',
-       border: '1px solid black',
-       padding: '5px',
+    //    border: '1px solid black',
+        boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+        padding: '5px',
        transition: 'transform .3s ease',
         "&:hover": {transform: 'scale(1.5)'}
    },
