@@ -22,6 +22,15 @@ function App() {
     .then(temps => setCards(temps))
   }, [])
 
+  useEffect(() => {
+    fetch('/me')
+    .then(res => {
+      if(res.ok){
+        res.json().then(user => setUser(user))
+      }
+    })
+  }, [])
+
   // artist add card to the cards array
   // function addNewTemplate(template){
 

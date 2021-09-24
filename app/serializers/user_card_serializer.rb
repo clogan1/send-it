@@ -1,5 +1,5 @@
 class UserCardSerializer < ActiveModel::Serializer
-  attributes :id, :recipient_email, :recipient_name, :message, :is_sent, :schedule_send
+  attributes :id, :recipient_email, :recipient_name, :message, :is_sent, :schedule_send, :created_at
 
   belongs_to :template
   belongs_to :user
