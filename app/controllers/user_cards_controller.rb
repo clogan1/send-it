@@ -1,7 +1,7 @@
 class UserCardsController < ApplicationController
 
     def index
-        render json: UserCard.all
+        render json: UserCard.all.order("created_at ASC")
     end
 
     def create

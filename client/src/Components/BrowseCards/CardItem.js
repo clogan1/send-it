@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router-dom'
 import {
     Box,
     Typography,
@@ -39,16 +40,27 @@ const useStyles = makeStyles({
    }
 })
 
-function CardItem({ card }) {
+function CardItem({ card, setEditTemplate, user }) {
     const classes = useStyles()
+    const history = useHistory();
 
     // console.log(card)
+
+    function handleCreateCard(){
+        if(!user){
+            console.log("You need to be signed in")
+        }
+        else{
+            setEditTemplate(card)
+            history.push('/editcard')
+        }
+    }
 
     return (
         <Grid item xs={4} className={classes.gridBox}>
         <Card className={classes.cardContainer} elevation={3}>
             <img src={card.art_url} className={classes.image}/>
-            <button className={classes.button}>use this cover</button>
+            <button className={classes.button} onClick={handleCreateCard}>use this cover</button>
         </Card>
         </Grid>
     )

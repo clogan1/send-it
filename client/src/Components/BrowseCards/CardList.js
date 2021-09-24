@@ -14,7 +14,7 @@ const useStyles = makeStyles({
    }
 })
 
-function CardList({ cards }) {
+function CardList({ cards, setEditTemplate, user }) {
     const classes = useStyles()
 
     // console.log("from list:", cards)
@@ -26,7 +26,9 @@ function CardList({ cards }) {
                 justifyContent="flex-start"
                 alignItems="flex-start">
             {cards.map(card => 
-                <CardItem card={card} key={card.id}/>  
+                <CardItem card={card} key={card.id} 
+                setEditTemplate={setEditTemplate}
+                user={user}/>  
                 )
             }
             </Grid>

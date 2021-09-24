@@ -13,6 +13,7 @@ import NavBar from './NavBar'
 function App() {
   const [user, setUser] = useState(null)
   const [cards, setCards] = useState([])
+  const [editTemplate, setEditTemplate] = useState('')
 
 
   useEffect(() => {
@@ -43,13 +44,17 @@ function App() {
             <AddCardPage />
           </Route>
           <Route path='/editcard'>
-            <EditCardPage />
+            <EditCardPage user={user}
+              editTemplate={editTemplate}/>
           </Route>
           <Route path='/mycards'>
-            <MyCardsPage />
+            <MyCardsPage user={user}/>
           </Route>
           <Route exact path='/'>
-            <BrowseCardsPage cards={cards}/>
+            <BrowseCardsPage 
+              cards={cards} 
+              setEditTemplate={setEditTemplate}
+              user={user}/>
           </Route>
       </Switch>
      
