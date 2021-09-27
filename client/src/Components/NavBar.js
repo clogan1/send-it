@@ -8,6 +8,8 @@ import {
     Typography,
     makeStyles
 } from '@material-ui/core'
+import { useSelector } from "react-redux";
+
 
 
 const useStyles = makeStyles({
@@ -70,11 +72,15 @@ const useStyles = makeStyles({
 })
 
 
-function NavBar( { user, setUser, signoutUser } ) {
+function NavBar( { signoutUser } ) {
     const classes = useStyles()
     const location = useLocation()
     const history = useHistory()
     const [openModal, setOpenModal] = useState(false);
+
+    const userObj = useSelector((state) => state.user.user);
+    console.log("from nav:", userObj)
+
 
     function handleOpenLogin(){
         setOpenModal(true)
@@ -103,7 +109,7 @@ function NavBar( { user, setUser, signoutUser } ) {
                     browse cards
                 </Typography>
             </Box>
-            { user ? 
+            { userObj ? 
                 <>
                 <Box className={location.pathname === "/mycards" ? classes.activeBox : classes.box}>
                     <Typography
@@ -123,7 +129,7 @@ function NavBar( { user, setUser, signoutUser } ) {
                 </Box>
                 <Box className={classes.profileBox}>
                     <img className={classes.profilepic} 
-                    src={user.avatar_url} alt={user.username}
+                    src={userObj.avatar_url} alt={userObj.username}
                     onClick={profileNav}
                     />
                 </Box>
@@ -141,7 +147,7 @@ function NavBar( { user, setUser, signoutUser } ) {
                 </>
             }
             { openModal ?
-                <FormModal openModal={openModal} setOpenModal={setOpenModal} setUser={setUser}/>
+                <FormModal openModal={openModal} setOpenModal={setOpenModal} />
                 :
                 null
             }

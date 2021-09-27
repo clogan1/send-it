@@ -39,18 +39,19 @@ function App() {
   //   .then(temps => setCards(temps))
   // }, [])
 
-  useEffect(() => {
-    fetch('/me')
-    .then(res => {
-      if(res.ok){
-        res.json().then(user => setUser(user))
-      }
-    })
-  }, [])
+  // replaced by Redux
+  // useEffect(() => {
+  //   fetch('/me')
+  //   .then(res => {
+  //     if(res.ok){
+  //       res.json().then(user => setUser(user))
+  //     }
+  //   })
+  // }, [])
 
   useEffect(() => {
     if(user){
-      fetch(`/users/${user.id}/user_cards`)
+      fetch(`/users/${storeUser.id}/user_cards`)
       .then(res => res.json())
       .then(setMyCards)
     }

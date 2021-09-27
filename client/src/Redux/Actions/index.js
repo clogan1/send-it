@@ -33,19 +33,6 @@
       }
   }
 
-  //log in user 
-  export function logInUser(user){
-    return (dispatch, getState) => {
-      dispatch( {type: "LOG_IN_USER", payload: user })
-      }
-  }
-
-  //sign in/up new user
-  export function signUpUser(user){
-    return (dispatch, getState) => {
-      dispatch( {type: "SIGN_UP_USER", payload: user })
-      }
-  }
 
   // log user out
   export function logOutUser(){
@@ -60,6 +47,21 @@
             // })
       }
   }
+
+  //log in user 
+  export function logInUser(user){
+    return (dispatch, getState) => {
+      dispatch( {type: "LOG_IN_USER", payload: user })
+      }
+  }
+
+  //sign in/up new user
+  export function signUpUser(user){
+    return (dispatch, getState) => {
+      dispatch( {type: "SIGN_UP_USER", payload: user })
+      }
+  }
+
 
 
 
