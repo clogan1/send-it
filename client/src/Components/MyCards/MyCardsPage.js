@@ -53,6 +53,11 @@ function MyCardsPage( { user }) {
         setToggleCards(false)
     }
 
+    function handleCardDelete(id){
+        const newMyCards = myCards.filter(card => card.id !== id)
+        setMyCards(newMyCards)
+    }
+
 
 
     return (
@@ -74,7 +79,7 @@ function MyCardsPage( { user }) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {myCards.map(card => <RowItem card={card} key={card.id}/>)
+                        {myCards.map(card => <RowItem card={card} key={card.id} handleCardDelete={handleCardDelete}/>)
                         }
                     </TableBody>
                 </Table>

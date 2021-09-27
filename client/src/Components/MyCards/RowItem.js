@@ -29,7 +29,9 @@ const useStyles = makeStyles({
     },
 })
 
-function RowItem({ card }) {
+
+
+function RowItem({ card, handleCardDelete }) {
     const classes = useStyles()
 
     console.log("from row:", card)
@@ -39,6 +41,13 @@ function RowItem({ card }) {
 
     dateCreated = new Intl.DateTimeFormat('en-US').format(dateCreated)
     sendDate = new Intl.DateTimeFormat('en-US').format(sendDate)
+
+    function handleDelete(){
+        fetch(`/user_cards/${card.id}`, {
+            method: 'DELETE',
+            headers: { Accept: 'application/json'}
+        }).then(handleCardDelete(card.id))
+    }
 
     return (
         <TableRow>
@@ -51,7 +60,8 @@ function RowItem({ card }) {
                 { !card.is_sent ? 
                     <>
                     <button className={classes.button}>edit</button>
-                    <button className={classes.button}>delete</button>
+                    <button className={classes.button}
+                    onClick={handleDelete}>delete</button>
                     </>
                     :
                     null
