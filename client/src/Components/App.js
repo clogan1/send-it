@@ -4,29 +4,40 @@ import { ThemeProvider } from '@material-ui/core';
 import theme from '../Styling/theme'
 // import { makeStyles } from '@material-ui/core';
 import { useEffect, useState } from "react";
-import AddCardPage from './AddCards/AddCardPage';
 import BrowseCardsPage from './BrowseCards/BrowseCardsPage';
 import CreateCardPage from './CreateCards/CreateCardPage';
 import MyCardsPage from './MyCards/MyCardsPage'
 import NavBar from './NavBar'
 import ProfilePage from './Profile/ProfilePage';
 import EditCardPage from './EditCards/EditCardPage'
+import { useSelector, useDispatch } from "react-redux";
+import { getLoggedInUser, logOutUser } from '../Redux/Actions/index'
+
 
 function App() {
   const [user, setUser] = useState(null)
-  const [cards, setCards] = useState([])
   const [myCards, setMyCards]= useState([])
-  const [myContributions, setMyContributions]= useState([])
   const [editTemplate, setEditTemplate] = useState('')
   const [editCard, setEditCard] = useState('')
   const [categories, setCategories] = useState([])
+  // const [cards, setCards] = useState([])
+  // const [myContributions, setMyContributions]= useState([])
 
+  const storeUser = useSelector((state) => state.user.user);
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    fetch('/templates')
-    .then(res => res.json())
-    .then(temps => setCards(temps))
+    dispatch(getLoggedInUser())
   }, [])
+  
+  console.log("from store:", storeUser)
+
+  // replaced by Redux
+  // useEffect(() => {
+  //   fetch('/templates')
+  //   .then(res => res.json())
+  //   .then(temps => setCards(temps))
+  // }, [])
 
   useEffect(() => {
     fetch('/me')
@@ -61,7 +72,8 @@ function App() {
       method: 'DELETE'
     }).then((r) => {
       if(r.ok){
-        setUser(null)
+        // setUser(null)
+        dispatch(logOutUser())
       }})
   }
 
@@ -79,9 +91,9 @@ function handleAddMyCard(card){
     <ThemeProvider theme={theme}>
       <NavBar user={user} setUser={setUser} signoutUser={signoutUser}/>
       <Switch>
-          <Route path='/addcard'>
+          {/* <Route path='/addcard'>
             <AddCardPage />
-          </Route>
+          </Route> */}
           <Route path='/createcard'>
             <CreateCardPage user={user}
               editTemplate={editTemplate}
@@ -103,7 +115,7 @@ function handleAddMyCard(card){
           </Route>
           <Route exact path='/'>
             <BrowseCardsPage 
-              cards={cards} 
+              // cards={cards} 
               setEditTemplate={setEditTemplate}
               user={user}
               categories={categories}/>

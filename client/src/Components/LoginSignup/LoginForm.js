@@ -5,6 +5,8 @@ import {
     Typography,
     Box
  } from '@material-ui/core';
+// import { useDispatch } from "react-redux";
+// import { logInUser } from '../../Redux/Actions/index'
 
  const useStyles = makeStyles({
     formDiv: {
@@ -52,6 +54,8 @@ function LoginForm( { setUser, setOpenModal } ) {
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState([])
 
+    // const dispatch = useDispatch()
+
     function handleSubmit (e) {
         // setErrors([])
         e.preventDefault();
@@ -71,6 +75,7 @@ function LoginForm( { setUser, setOpenModal } ) {
             if(res.ok){
                 res.json().then(user => {
                     setUser(user)
+                    // dispatch(logInUser(user))
                     setOpenModal(false)
                 })
             }

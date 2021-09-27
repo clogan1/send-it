@@ -29,7 +29,7 @@ function CardList({ cards, setEditTemplate, user }) {
                 <CardItem card={card} key={card.id} 
                 setEditTemplate={setEditTemplate}
                 user={user}/>  
-                )
+                ) 
             }
             </Grid>
         </Container>

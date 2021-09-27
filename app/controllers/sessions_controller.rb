@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
     # /logout
     def destroy
-        session.delete :id
+        session.delete :user_id
         head :no_content
     end
 

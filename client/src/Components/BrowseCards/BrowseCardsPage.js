@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import Filter from './Filter'
 import Sort from './Sort'
 import CardList from './CardList'
@@ -9,6 +9,8 @@ import {
     Grid,
 
 } from '@material-ui/core'
+import { useSelector, useDispatch } from "react-redux";
+import { getTemplates } from '../../Redux/Actions/index'
 
 const useStyles = makeStyles({
     container: {
@@ -36,12 +38,21 @@ const useStyles = makeStyles({
     }
 })
 
-function BrowseCardsPage( { cards, setEditTemplate, user, categories } ) {
+function BrowseCardsPage( { setEditTemplate, user, categories } ) {
     const classes = useStyles()
     const [filter, setFilter] = useState([])
     const [sort, setSort] = useState('newest')
 
-    const displayCards = cards.filter(card => {
+    const templates = useSelector((state) => state.templates.templates);
+    const dispatch = useDispatch()
+  
+    useEffect(() => {
+      dispatch(getTemplates())
+    }, [])
+  
+    // console.log("from store", templates)
+
+    const displayCards = templates.filter(card => {
         if(filter.length < 1){
             return card
         } else {

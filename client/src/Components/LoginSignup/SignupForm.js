@@ -5,6 +5,8 @@ import {
     Typography,
     Box
  } from '@material-ui/core';
+// import { useDispatch } from "react-redux";
+// import { signUpUser } from '../../Redux/Actions/index'
 
  const useStyles = makeStyles({
     formDiv: {
@@ -51,6 +53,8 @@ function SignupForm( { setUser, setOpenModal } ) {
     const [avatarUrl, setAvatarUrl] = useState('')
     const [errors, setErrors] = useState([])
 
+    // const dispatch = useDispatch()
+
     function handleSubmit (e) {
         e.preventDefault();
 
@@ -73,6 +77,7 @@ function SignupForm( { setUser, setOpenModal } ) {
             if(res.ok){
                 res.json().then(user => {
                     setUser(user)
+                    // signUpUser(user)
                     setOpenModal(false)
                 })
             }
