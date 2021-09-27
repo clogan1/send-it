@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import RowItem from './RowItem'
 import {
     Box,
@@ -18,6 +19,7 @@ const useStyles = makeStyles({
     container: {
         backgroundColor: "#F3F2F2",
         height: '100%',
+        paddingTop: '10px',
         flexGrow: 1,},
         header: {
             fontSize: '24px',
@@ -31,19 +33,12 @@ const useStyles = makeStyles({
         }
     })
 
-function MyCardsPage( { user }) {
+function MyCardsPage( { user, setEditCard, myCards, setMyCards, handleMyCardDelete}) {
     const classes = useStyles()
     const [toggleCards, setToggleCards] = useState(true)
-    const [myCards, setMyCards]= useState([])
-    const [myContributions, setMyContributions]= useState([])
 
-    useEffect(() => {
-        if(user){
-        fetch(`/users/${user.id}/user_cards`)
-        .then(res => res.json())
-        .then(setMyCards)
-        }
-    }, [])
+    const history = useHistory()
+
 
     function handleCardToggle(){
         setToggleCards(true)
@@ -52,13 +47,6 @@ function MyCardsPage( { user }) {
     function handleContributionToggle(){
         setToggleCards(false)
     }
-
-    function handleCardDelete(id){
-        const newMyCards = myCards.filter(card => card.id !== id)
-        setMyCards(newMyCards)
-    }
-
-
 
     return (
         <Box className={classes.container}>
@@ -79,7 +67,7 @@ function MyCardsPage( { user }) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {myCards.map(card => <RowItem card={card} key={card.id} handleCardDelete={handleCardDelete}/>)
+                        {myCards.map(card => <RowItem card={card} key={card.id} handleMyCardDelete={handleMyCardDelete} setEditCard={setEditCard}/>)
                         }
                     </TableBody>
                 </Table>

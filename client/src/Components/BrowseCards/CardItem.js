@@ -32,7 +32,9 @@ const useStyles = makeStyles({
        borderStyle: 'none',
        height: '30px',
        borderRadius: '12px',
-       marginTop: '10px'
+       marginTop: '10px',
+       "&:hover": {backgroundColor: '#84EBB9'}
+
    },
    gridBox : {
     justifyContent: 'center',
@@ -52,7 +54,7 @@ function CardItem({ card, setEditTemplate, user }) {
         }
         else{
             setEditTemplate(card)
-            history.push('/editcard')
+            history.push('/createcard')
         }
     }
 

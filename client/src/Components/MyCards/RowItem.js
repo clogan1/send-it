@@ -1,3 +1,4 @@
+import { useHistory } from 'react-router-dom'
 import {
     Box,
     Container,
@@ -25,16 +26,19 @@ const useStyles = makeStyles({
         borderRadius: '12px',
         width: '70px',
         margin: '5px',
-        padding: '5px'
+        padding: '5px',
+        "&:hover": {backgroundColor: '#84EBB9'}
+
     },
 })
 
 
 
-function RowItem({ card, handleCardDelete }) {
+function RowItem({ card, handleMyCardDelete, setEditCard }) {
     const classes = useStyles()
+    const history = useHistory()
 
-    console.log("from row:", card)
+    // console.log(card)
 
     let dateCreated = Date.parse(card.created_at)
     let sendDate = Date.parse(card.schedule_send)
@@ -46,7 +50,12 @@ function RowItem({ card, handleCardDelete }) {
         fetch(`/user_cards/${card.id}`, {
             method: 'DELETE',
             headers: { Accept: 'application/json'}
-        }).then(handleCardDelete(card.id))
+        }).then(handleMyCardDelete(card.id))
+    }
+
+    function handleEditClick(){
+        setEditCard(card)
+        history.push('/editcard')
     }
 
     return (
@@ -59,7 +68,7 @@ function RowItem({ card, handleCardDelete }) {
             <TableCell>
                 { !card.is_sent ? 
                     <>
-                    <button className={classes.button}>edit</button>
+                    <button className={classes.button} onClick={handleEditClick}>edit</button>
                     <button className={classes.button}
                     onClick={handleDelete}>delete</button>
                     </>

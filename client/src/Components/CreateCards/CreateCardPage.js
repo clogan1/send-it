@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import {
     Box,
@@ -96,46 +96,40 @@ const useStyles = makeStyles({
 
 })
 
-function EditCardPage( { editCard }) {
+function CreateCardPage( {user, editTemplate, handleAddMyCard }) {
     const classes = useStyles()
     const [recipientName, setRecipientName]= useState('')
     const [recipientEmail, setRecipientEmail] = useState('')
     const [message, setMessage] = useState('')
-    const [scheduleSend, setScheduleSend] = useState()
+    const [scheduleSend, setScheduleSend] = useState('')
     const [errors, setErrors] = useState([])
     const history = useHistory()
-
-
-    useEffect(()=> {
-        setRecipientName(editCard.recipient_name)
-        setRecipientEmail(editCard.recipient_email)
-        setMessage(editCard.message)
-        // let formattedDate = editCard.schedule_send.split('T').join('').split('.').shift().slice(0,-3)
-        // console.log(formattedDate)
-        setScheduleSend(editCard.schedule_send)
-    }, [])
 
 
     function handleSubmit(e){
         e.preventDefault()
 
-        const updatedUserCard = {
+        const newUserCard = {
+            user_id: user.id,
+            template_id: editTemplate.id,
             recipient_name: recipientName,
             recipient_email: recipientEmail,
             message: message,
+            is_sent: false,
             schedule_send: scheduleSend
         }
 
-        fetch(`/user_cards/${editCard.id}`, {
-            method: 'PATCH',
+        fetch('/user_cards', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(updatedUserCard)
+            body: JSON.stringify(newUserCard)
         }).then(res => {
             if(res.ok){
                 res.json().then(card => {
                     console.log(card)
+                    handleAddMyCard(card)
                     history.push('/mycards')
                 })
             }
@@ -154,7 +148,9 @@ function EditCardPage( { editCard }) {
                 <Box className={classes.box}>
                 <Typography className={classes.header}>preview</Typography>
                 <Grid item xs={12} className={classes.prevBox}>
-                    { editCard ? <img src={editCard.template.art_url} className={classes.image}/> : null }
+                    <img src={editTemplate.art_url} className={classes.image}/>
+                {/* </Grid> */}
+                {/* <Grid item xs={6} className={classes.prevBox}> */}
                     <Box className={classes.card}>
                         {message}
                     </Box>
@@ -203,7 +199,7 @@ function EditCardPage( { editCard }) {
                                 />
                             <br></br>
                             <br></br>
-                            <button type="submit" className={classes.button}>update card</button>
+                            <button type="submit" className={classes.button}>schedule send</button>
                         </form>
                         <Box className={classes.errorItem} >
                             {(errors.length > 0) ? 
@@ -229,4 +225,4 @@ function EditCardPage( { editCard }) {
     )
 }
 
-export default EditCardPage
+export default CreateCardPage

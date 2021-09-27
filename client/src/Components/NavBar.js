@@ -1,5 +1,5 @@
 import FormModal from './LoginSignup/FormModal';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import { useState } from 'react'
 import {
     AppBar,
@@ -73,10 +73,15 @@ const useStyles = makeStyles({
 function NavBar( { user, setUser, signoutUser } ) {
     const classes = useStyles()
     const location = useLocation()
+    const history = useHistory()
     const [openModal, setOpenModal] = useState(false);
 
     function handleOpenLogin(){
         setOpenModal(true)
+    }
+
+    function profileNav(){
+        history.push('/myprofile')
     }
 
     return (
@@ -118,7 +123,9 @@ function NavBar( { user, setUser, signoutUser } ) {
                 </Box>
                 <Box className={classes.profileBox}>
                     <img className={classes.profilepic} 
-                    src={user.avatar_url} alt={user.username}/>
+                    src={user.avatar_url} alt={user.username}
+                    onClick={profileNav}
+                    />
                 </Box>
 
                 </>

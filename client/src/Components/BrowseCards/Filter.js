@@ -19,15 +19,15 @@ import {
     }
  })
 
-function Filter( { filter, setFilter }) {
+function Filter( { filter, setFilter, categories }) {
     const classes = useStyles()
-    const [categories, setCategories] = useState([])
+    // const [categories, setCategories] = useState([])
 
-    useEffect(()=>{
-        fetch('/categories')
-        .then(res => res.json())
-        .then(cats => setCategories(cats))
-    }, [])
+    // useEffect(()=>{
+    //     fetch('/categories')
+    //     .then(res => res.json())
+    //     .then(cats => setCategories(cats))
+    // }, [])
 
     // console.log(categories)
 
