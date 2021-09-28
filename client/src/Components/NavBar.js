@@ -72,11 +72,10 @@ const useStyles = makeStyles({
 })
 
 
-function NavBar( {  } ) {
+function NavBar( { openModal, setOpenModal } ) {
     const classes = useStyles()
     const location = useLocation()
     const history = useHistory()
-    const [openModal, setOpenModal] = useState(false);
 
     const dispatch = useDispatch()
     const userObj = useSelector((state) => state.user.user);

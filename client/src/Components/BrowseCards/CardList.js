@@ -14,7 +14,7 @@ const useStyles = makeStyles({
    }
 })
 
-function CardList({ cards, setEditTemplate }) {
+function CardList({ cards, setEditTemplate, setOpenModal }) {
     const classes = useStyles()
 
     // console.log("from list:", cards)
@@ -28,6 +28,7 @@ function CardList({ cards, setEditTemplate }) {
             {cards.map(card => 
                 <CardItem card={card} key={card.id} 
                 setEditTemplate={setEditTemplate}
+                setOpenModal={setOpenModal}
                 />  
                 ) 
             }

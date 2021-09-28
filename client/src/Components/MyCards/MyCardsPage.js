@@ -19,7 +19,7 @@ import { useSelector } from "react-redux";
 const useStyles = makeStyles({
     container: {
         backgroundColor: "#F3F2F2",
-        height: '100%',
+        height: '100vh',
         paddingTop: '10px',
         flexGrow: 1,},
         header: {
@@ -62,7 +62,7 @@ function MyCardsPage( { setEditCard, handleMyCardDelete}) {
                             <TableCell className={classes.headerText} >preview</TableCell>
                             <TableCell className={classes.headerText} >status</TableCell>
                             <TableCell className={classes.headerText} >date created</TableCell>
-                            <TableCell className={classes.headerText} >send date</TableCell>
+                            <TableCell className={classes.headerText} >date sent</TableCell>
                             <TableCell className={classes.headerText} >recipient</TableCell>
                             <TableCell className={classes.headerText} >actions</TableCell>
                         </TableRow>

@@ -103,7 +103,7 @@ function EditCardPage( { editCard }) {
     const [recipientName, setRecipientName]= useState('')
     const [recipientEmail, setRecipientEmail] = useState('')
     const [message, setMessage] = useState('')
-    const [scheduleSend, setScheduleSend] = useState()
+    // const [scheduleSend, setScheduleSend] = useState()
     const [errors, setErrors] = useState([])
     const history = useHistory()
     const dispatch = useDispatch()
@@ -114,7 +114,7 @@ function EditCardPage( { editCard }) {
         setMessage(editCard.message)
         // let formattedDate = editCard.schedule_send.split('T').join('').split('.').shift().slice(0,-3)
         // console.log(formattedDate)
-        setScheduleSend(editCard.schedule_send)
+        // setScheduleSend(editCard.schedule_send)
     }, [])
 
 
@@ -124,8 +124,8 @@ function EditCardPage( { editCard }) {
         const updatedUserCard = {
             recipient_name: recipientName,
             recipient_email: recipientEmail,
-            message: message,
-            schedule_send: scheduleSend
+            message: message
+            // schedule_send: scheduleSend
         }
 
         fetch(`/user_cards/${editCard.id}`, {
@@ -195,7 +195,7 @@ function EditCardPage( { editCard }) {
                                 className={classes.message}
                                 />
                             <br></br>
-                            <Typography className={classes.labels}>schedule send:</Typography>
+                            {/* <Typography className={classes.labels}>schedule send:</Typography>
                                 <input 
                                 type="datetime-local"
                                 id="scheduleSend"
@@ -203,7 +203,7 @@ function EditCardPage( { editCard }) {
                                 onChange={(e) => setScheduleSend(e.target.value)}
                                 className={classes.formItems}
                                 />
-                            <br></br>
+                            <br></br> */}
                             <br></br>
                             <button type="submit" className={classes.button}>update card</button>
                         </form>

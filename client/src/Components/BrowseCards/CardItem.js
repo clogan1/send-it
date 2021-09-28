@@ -44,7 +44,7 @@ const useStyles = makeStyles({
    }
 })
 
-function CardItem({ card, setEditTemplate }) {
+function CardItem({ card, setEditTemplate, setOpenModal }) {
     const classes = useStyles()
     const history = useHistory();
 
@@ -55,6 +55,7 @@ function CardItem({ card, setEditTemplate }) {
 
     function handleCreateCard(){
         if(!user){
+            setOpenModal(true)
             console.log("You need to be signed in")
         }
         else{

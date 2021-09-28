@@ -6,7 +6,12 @@ class UserCardsController < ApplicationController
 
     def create
         user_card = UserCard.create!(user_card_params)
+        # template_url = user_card.template.art_url
+        #     if user_card
+        #       CardMailer.send_card(user_card, template_url).deliver_later(wait_until: user_card.schedule_send)
+        #     end
         render json: user_card, status: :created
+
     end
 
     def update
@@ -18,6 +23,14 @@ class UserCardsController < ApplicationController
         # end 
         user_card = UserCard.find(params[:id])
         user_card.update!(user_card_params)
+        render json: user_card, status: :accepted
+    end
+    
+    def email_card
+        user_card = UserCard.find(params[:id])
+        user_card.update!(user_card_params)
+        template_url = user_card.template.art_url
+        CardMailer.send_card(user_card, template_url).deliver_now
         render json: user_card, status: :accepted
     end
 

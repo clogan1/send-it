@@ -104,7 +104,7 @@ function CreateCardPage( { editTemplate }) {
     const [recipientName, setRecipientName]= useState('')
     const [recipientEmail, setRecipientEmail] = useState('')
     const [message, setMessage] = useState('')
-    const [scheduleSend, setScheduleSend] = useState('')
+    // const [scheduleSend, setScheduleSend] = useState('')
     const [errors, setErrors] = useState([])
     const history = useHistory()
 
@@ -123,7 +123,7 @@ function CreateCardPage( { editTemplate }) {
             recipient_email: recipientEmail,
             message: message,
             is_sent: false,
-            schedule_send: scheduleSend
+            // schedule_send: scheduleSend
         }
 
         fetch('/user_cards', {
@@ -197,7 +197,7 @@ function CreateCardPage( { editTemplate }) {
                                 className={classes.message}
                                 />
                             <br></br>
-                            <Typography className={classes.labels}>schedule send:</Typography>
+                            {/* <Typography className={classes.labels}>schedule send:</Typography>
                                 <input 
                                 type="datetime-local"
                                 id="scheduleSend"
@@ -205,9 +205,9 @@ function CreateCardPage( { editTemplate }) {
                                 onChange={(e) => setScheduleSend(e.target.value)}
                                 className={classes.formItems}
                                 />
+                            <br></br> */}
                             <br></br>
-                            <br></br>
-                            <button type="submit" className={classes.button}>schedule send</button>
+                            <button type="submit" className={classes.button}>create card</button>
                         </form>
                         <Box className={classes.errorItem} >
                             {(errors.length > 0) ? 

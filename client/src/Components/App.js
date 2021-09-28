@@ -2,7 +2,6 @@ import '../App.css'
 import { Switch, Route } from "react-router-dom";
 import { ThemeProvider } from '@material-ui/core';
 import theme from '../Styling/theme'
-// import { makeStyles } from '@material-ui/core';
 import { useEffect, useState } from "react";
 import BrowseCardsPage from './BrowseCards/BrowseCardsPage';
 import CreateCardPage from './CreateCards/CreateCardPage';
@@ -15,13 +14,14 @@ import { getLoggedInUser } from '../Redux/Actions/index'
 
 
 function App() {
-  // const [myCards, setMyCards]= useState([])
   const [editTemplate, setEditTemplate] = useState('')
   const [editCard, setEditCard] = useState('')
   const [categories, setCategories] = useState([])
+  const [openModal, setOpenModal] = useState(false);
   // const [user, setUser] = useState(null)
   // const [cards, setCards] = useState([])
   // const [myContributions, setMyContributions]= useState([])
+  // const [myCards, setMyCards]= useState([])
 
   const storeUser = useSelector((state) => state.user.user);
 
@@ -30,6 +30,12 @@ function App() {
   useEffect(() => {
     dispatch(getLoggedInUser())
   }, [])
+
+  useEffect(()=>{
+    fetch('/categories')
+    .then(res => res.json())
+    .then(cats => setCategories(cats))
+}, [])
   
   // console.log("from store:", storeUser)
 
@@ -68,12 +74,6 @@ function App() {
   //   }
   // }, [] )
 
-  useEffect(()=>{
-    fetch('/categories')
-    .then(res => res.json())
-    .then(cats => setCategories(cats))
-}, [])
-
   // artist add card to the cards array
   // function addNewTemplate(template){
 
@@ -93,7 +93,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <NavBar  />
+      <NavBar  openModal={openModal} setOpenModal={setOpenModal}/>
       <Switch>
           <Route path='/createcard'>
             <CreateCardPage
@@ -114,7 +114,8 @@ function App() {
           <Route exact path='/'>
             <BrowseCardsPage 
               setEditTemplate={setEditTemplate}
-              categories={categories}/>
+              categories={categories}
+              setOpenModal={setOpenModal}/>
           </Route>
       </Switch>
      

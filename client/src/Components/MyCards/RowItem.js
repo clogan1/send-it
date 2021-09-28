@@ -8,7 +8,7 @@ import {
     TableRow
 } from '@material-ui/core';
 import { useDispatch } from "react-redux";
-import { deleteMyCard } from '../../Redux/Actions/index'
+import { deleteMyCard, editMyCard } from '../../Redux/Actions/index'
 
 
 const useStyles = makeStyles({
@@ -44,10 +44,12 @@ function RowItem({ card, setEditCard }) {
 
 
     let dateCreated = Date.parse(card.created_at)
-    let sendDate = Date.parse(card.schedule_send)
+    console.log(card.schedule_send)
+    let sendDate = (card.schedule_send) ? Date.parse(card.schedule_send) : null
+   
 
     dateCreated = new Intl.DateTimeFormat('en-US').format(dateCreated)
-    sendDate = new Intl.DateTimeFormat('en-US').format(sendDate)
+    sendDate = (sendDate) ? new Intl.DateTimeFormat('en-US').format(sendDate) : null
 
     function handleDelete(){
         fetch(`/user_cards/${card.id}`, {
@@ -61,6 +63,28 @@ function RowItem({ card, setEditCard }) {
         history.push('/editcard')
     }
 
+    function handleSendClick(){
+        console.log("Send it!")
+        const t = new Date(Date.now()).toISOString()
+        const updatedUserCard = {
+            is_sent: true,
+            schedule_send: t
+        }
+        fetch(`/sendcard/${card.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedUserCard)
+        }).then(res => {
+            if(res.ok){
+                res.json().then(card => {
+                    dispatch(editMyCard(card))
+                })
+            }
+        })
+    }
+
     return (
         <TableRow>
             <TableCell><img className={classes.prevImage} src={card.template.art_url}/></TableCell>
@@ -71,6 +95,7 @@ function RowItem({ card, setEditCard }) {
             <TableCell>
                 { !card.is_sent ? 
                     <>
+                    <button className={classes.button} onClick={handleSendClick}>send it!</button>
                     <button className={classes.button} onClick={handleEditClick}>edit</button>
                     <button className={classes.button}
                     onClick={handleDelete}>delete</button>

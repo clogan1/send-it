@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/me', to: 'users#show'
   get '/mycards', to: 'users#mycards'
+  patch '/sendcard/:id', to: 'user_cards#email_card'
   # resources :roles
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
