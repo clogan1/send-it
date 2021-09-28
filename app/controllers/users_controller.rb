@@ -2,6 +2,7 @@ class UsersController < ApplicationController
     # skip_before_action :authorize, only: :create
     before_action :authorize, except: :create
     # delete before publishing
+    
     def index
         render json: User.all
     end
@@ -17,6 +18,13 @@ class UsersController < ApplicationController
     def show
         user = User.find_by(id: session[:user_id])
         render json: user, status: :created
+    end
+
+    # /mycards
+    def mycards
+        user = User.find_by(id: session[:user_id])
+        cards = user.user_cards.order("created_at DESC")
+        render json: cards
     end
 
 

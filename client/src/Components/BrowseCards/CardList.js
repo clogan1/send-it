@@ -14,7 +14,7 @@ const useStyles = makeStyles({
    }
 })
 
-function CardList({ cards, setEditTemplate, user }) {
+function CardList({ cards, setEditTemplate }) {
     const classes = useStyles()
 
     // console.log("from list:", cards)
@@ -28,7 +28,7 @@ function CardList({ cards, setEditTemplate, user }) {
             {cards.map(card => 
                 <CardItem card={card} key={card.id} 
                 setEditTemplate={setEditTemplate}
-                user={user}/>  
+                />  
                 ) 
             }
             </Grid>

@@ -10,12 +10,15 @@ class UserCardsController < ApplicationController
     end
 
     def update
-        if send_date_check
-            user_card = send_date_check.update!(user_card_params)
-            render json: user_card, status: :accepted
-        else
-            render json: {error: 'You cannot edit a card that has already been sent.'}
-        end 
+        # if send_date_check
+        #     user_card = send_date_check.update!(user_card_params)
+        #     render json: user_card, status: :accepted
+        # else
+        #      render json: {error: 'You cannot edit a card that has already been sent.'}
+        # end 
+        user_card = UserCard.find(params[:id])
+        user_card.update!(user_card_params)
+        render json: user_card, status: :accepted
     end
 
     def destroy

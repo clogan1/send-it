@@ -8,8 +8,8 @@ import {
     Typography,
     makeStyles
 } from '@material-ui/core'
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { logOutUser } from '../Redux/Actions/index'
 
 
 const useStyles = makeStyles({
@@ -72,15 +72,26 @@ const useStyles = makeStyles({
 })
 
 
-function NavBar( { signoutUser } ) {
+function NavBar( {  } ) {
     const classes = useStyles()
     const location = useLocation()
     const history = useHistory()
     const [openModal, setOpenModal] = useState(false);
 
+    const dispatch = useDispatch()
     const userObj = useSelector((state) => state.user.user);
-    console.log("from nav:", userObj)
+    // console.log("from nav:", userObj)
 
+    function signoutUser(){
+        fetch('/logout', {
+          method: 'DELETE'
+        }).then((r) => {
+          if(r.ok){
+            // setUser(null)
+            dispatch(logOutUser())
+            history.push('/')
+          }})
+      }
 
     function handleOpenLogin(){
         setOpenModal(true)
@@ -129,7 +140,7 @@ function NavBar( { signoutUser } ) {
                 </Box>
                 <Box className={classes.profileBox}>
                     <img className={classes.profilepic} 
-                    src={userObj.avatar_url} alt={userObj.username}
+                    src={userObj.avatar_url ? userObj.avatar_url : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'} alt={userObj.username}
                     onClick={profileNav}
                     />
                 </Box>

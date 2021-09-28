@@ -45,7 +45,7 @@ import {
     }
  })
 
-function FormModal({ openModal, setOpenModal, setUser }) {
+function FormModal({ openModal, setOpenModal }) {
     const classes = useStyles();
     const [login, setLogin] = useState(true)
 
@@ -78,9 +78,9 @@ function FormModal({ openModal, setOpenModal, setUser }) {
                     <CloseIcon />
                 </IconButton>
                 {login ?
-                    <LoginForm setUser={setUser} setOpenModal={setOpenModal}/>
+                    <LoginForm  setOpenModal={setOpenModal}/>
                     :
-                    <SignupForm setUser={setUser} setOpenModal={setOpenModal}/>
+                    <SignupForm setOpenModal={setOpenModal}/>
                 }
                 { login ?
                     <Typography className={classes.text}>are you new?  &nbsp;  

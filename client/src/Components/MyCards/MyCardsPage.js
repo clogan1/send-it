@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useState } from 'react'
 import RowItem from './RowItem'
 import {
     Box,
@@ -13,7 +12,9 @@ import {
     TableContainer,
     TableHead,
     TableRow
-} from '@material-ui/core'
+} from '@material-ui/core';
+import { useSelector } from "react-redux";
+
 
 const useStyles = makeStyles({
     container: {
@@ -33,11 +34,11 @@ const useStyles = makeStyles({
         }
     })
 
-function MyCardsPage( { user, setEditCard, myCards, setMyCards, handleMyCardDelete}) {
+function MyCardsPage( { setEditCard, handleMyCardDelete}) {
     const classes = useStyles()
     const [toggleCards, setToggleCards] = useState(true)
 
-    const history = useHistory()
+    const cards = useSelector((state) => state.myCards.myCards);
 
 
     function handleCardToggle(){
@@ -67,7 +68,7 @@ function MyCardsPage( { user, setEditCard, myCards, setMyCards, handleMyCardDele
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {myCards.map(card => <RowItem card={card} key={card.id} handleMyCardDelete={handleMyCardDelete} setEditCard={setEditCard}/>)
+                        {cards.map(card => <RowItem card={card} key={card.id} handleMyCardDelete={handleMyCardDelete} setEditCard={setEditCard}/>)
                         }
                     </TableBody>
                 </Table>

@@ -7,6 +7,9 @@ import {
     Grid,
 
 } from '@material-ui/core'
+import { useSelector, useDispatch } from "react-redux";
+import { addMyCard } from '../../Redux/Actions/index'
+
 
 const useStyles = makeStyles({
     container: {
@@ -96,7 +99,7 @@ const useStyles = makeStyles({
 
 })
 
-function CreateCardPage( {user, editTemplate, handleAddMyCard }) {
+function CreateCardPage( { editTemplate }) {
     const classes = useStyles()
     const [recipientName, setRecipientName]= useState('')
     const [recipientEmail, setRecipientEmail] = useState('')
@@ -104,6 +107,10 @@ function CreateCardPage( {user, editTemplate, handleAddMyCard }) {
     const [scheduleSend, setScheduleSend] = useState('')
     const [errors, setErrors] = useState([])
     const history = useHistory()
+
+    const user = useSelector((state) => state.user.user);
+    const dispatch = useDispatch()
+
 
 
     function handleSubmit(e){
@@ -128,8 +135,9 @@ function CreateCardPage( {user, editTemplate, handleAddMyCard }) {
         }).then(res => {
             if(res.ok){
                 res.json().then(card => {
-                    console.log(card)
-                    handleAddMyCard(card)
+                    // console.log(card)
+                    //handleAddMyCard(card)
+                    dispatch(addMyCard(card))
                     history.push('/mycards')
                 })
             }

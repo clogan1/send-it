@@ -5,7 +5,9 @@ import {
     makeStyles,
     Grid,
     Card
-} from '@material-ui/core'
+} from '@material-ui/core';
+import { useSelector } from "react-redux";
+
 
 const useStyles = makeStyles({
    cardContainer : {
@@ -42,9 +44,12 @@ const useStyles = makeStyles({
    }
 })
 
-function CardItem({ card, setEditTemplate, user }) {
+function CardItem({ card, setEditTemplate }) {
     const classes = useStyles()
     const history = useHistory();
+
+    const user = useSelector((state) => state.user.user);
+
 
     // console.log(card)
 

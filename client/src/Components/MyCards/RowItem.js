@@ -6,7 +6,10 @@ import {
     makeStyles,
     TableCell,
     TableRow
-} from '@material-ui/core'
+} from '@material-ui/core';
+import { useDispatch } from "react-redux";
+import { deleteMyCard } from '../../Redux/Actions/index'
+
 
 const useStyles = makeStyles({
     prevImage: {
@@ -34,11 +37,11 @@ const useStyles = makeStyles({
 
 
 
-function RowItem({ card, handleMyCardDelete, setEditCard }) {
+function RowItem({ card, setEditCard }) {
     const classes = useStyles()
     const history = useHistory()
+    const dispatch = useDispatch()
 
-    // console.log(card)
 
     let dateCreated = Date.parse(card.created_at)
     let sendDate = Date.parse(card.schedule_send)
@@ -50,7 +53,7 @@ function RowItem({ card, handleMyCardDelete, setEditCard }) {
         fetch(`/user_cards/${card.id}`, {
             method: 'DELETE',
             headers: { Accept: 'application/json'}
-        }).then(handleMyCardDelete(card.id))
+        }).then(dispatch(deleteMyCard(card)))
     }
 
     function handleEditClick(){

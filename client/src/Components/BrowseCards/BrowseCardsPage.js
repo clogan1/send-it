@@ -38,7 +38,7 @@ const useStyles = makeStyles({
     }
 })
 
-function BrowseCardsPage( { setEditTemplate, user, categories } ) {
+function BrowseCardsPage( { setEditTemplate, categories } ) {
     const classes = useStyles()
     const [filter, setFilter] = useState([])
     const [sort, setSort] = useState('newest')
@@ -86,7 +86,7 @@ function BrowseCardsPage( { setEditTemplate, user, categories } ) {
                 <Grid item xs={10} className={classes.cardContainer}>
                     <CardList cards={displayCards} 
                     setEditTemplate={setEditTemplate}
-                    user={user}/>
+                    />
                 </Grid>
 
             </Grid>

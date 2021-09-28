@@ -11,14 +11,22 @@ const initialMyCards = {
         }
       }
 
-      case "ADD_CARD": {
+      case "CLEAR_CARDS": {
         return {
           ...state,
-          myCards: [...state.myCards, action.payload]
+          myCards: []
+        }
+      }
+
+      case "ADD_MY_CARD": {
+        return {
+          ...state,
+          myCards: [action.payload, ...state.myCards]
         }
       }
 
       case "EDIT_CARD": {
+        // console.log("from edit card:", action.payload)
         const newMyCards = state.myCards.map(card => {
             if(card.id === action.payload.id){
               return action.payload
@@ -32,10 +40,11 @@ const initialMyCards = {
       }
 
       case "DELETE_CARD": {
-        return {
+        const newMyCards = state.myCards.filter(card => card.id !== action.payload.id)
+      return {
           ...state,
-          myCards: [...myCards.templates, action.payload]
-        }
+          myCards: newMyCards
+          }
       }
 
       default:

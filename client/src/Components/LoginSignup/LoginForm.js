@@ -48,7 +48,7 @@ import { logInUser } from '../../Redux/Actions/index'
     }
  })
 
-function LoginForm( { setUser, setOpenModal } ) {
+function LoginForm( { setOpenModal } ) {
     const classes = useStyles()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -56,7 +56,7 @@ function LoginForm( { setUser, setOpenModal } ) {
 
     const dispatch = useDispatch()
     const storeUser = useSelector((state) => state.user.user);
-    console.log('from store/login:',storeUser )
+    // console.log('from store/login:',storeUser )
 
     function handleSubmit (e) {
         // setErrors([])

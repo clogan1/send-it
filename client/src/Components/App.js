@@ -11,26 +11,27 @@ import NavBar from './NavBar'
 import ProfilePage from './Profile/ProfilePage';
 import EditCardPage from './EditCards/EditCardPage'
 import { useSelector, useDispatch } from "react-redux";
-import { getLoggedInUser, logOutUser } from '../Redux/Actions/index'
+import { getLoggedInUser } from '../Redux/Actions/index'
 
 
 function App() {
-  const [user, setUser] = useState(null)
-  const [myCards, setMyCards]= useState([])
+  // const [myCards, setMyCards]= useState([])
   const [editTemplate, setEditTemplate] = useState('')
   const [editCard, setEditCard] = useState('')
   const [categories, setCategories] = useState([])
+  // const [user, setUser] = useState(null)
   // const [cards, setCards] = useState([])
   // const [myContributions, setMyContributions]= useState([])
 
   const storeUser = useSelector((state) => state.user.user);
+
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getLoggedInUser())
   }, [])
   
-  console.log("from store:", storeUser)
+  // console.log("from store:", storeUser)
 
   // replaced by Redux
   // useEffect(() => {
@@ -49,13 +50,23 @@ function App() {
   //   })
   // }, [])
 
-  useEffect(() => {
-    if(user){
-      fetch(`/users/${storeUser.id}/user_cards`)
-      .then(res => res.json())
-      .then(setMyCards)
-    }
-  }, [user] )
+  // function signoutUser(){
+  //   fetch('/logout', {
+  //     method: 'DELETE'
+  //   }).then((r) => {
+  //     if(r.ok){
+  //       // setUser(null)
+  //       dispatch(logOutUser())
+  //     }})
+  // }
+
+  // useEffect(() => {
+  //   if(storeUser){
+  //     fetch(`/users/${storeUser.id}/user_cards`)
+  //     .then(res => res.json())
+  //     .then(cards => console.log("from user card fetch:", cards))
+  //   }
+  // }, [] )
 
   useEffect(()=>{
     fetch('/categories')
@@ -68,57 +79,41 @@ function App() {
 
   // }
 
-  function signoutUser(){
-    fetch('/logout', {
-      method: 'DELETE'
-    }).then((r) => {
-      if(r.ok){
-        // setUser(null)
-        dispatch(logOutUser())
-      }})
-  }
+ 
 
-  function handleMyCardDelete(id){
-    const newMyCards = myCards.filter(card => card.id !== id)
-    setMyCards(newMyCards)
-}
+//   function handleMyCardDelete(id){
+//     const newMyCards = myCards.filter(card => card.id !== id)
+//     setMyCards(newMyCards)
+// }
 
-function handleAddMyCard(card){
-  setMyCards([card, ...myCards])
+// function handleAddMyCard(card){
+//   setMyCards([card, ...myCards])
 
-}
+// }
 
   return (
     <ThemeProvider theme={theme}>
-      <NavBar user={user} setUser={setUser} signoutUser={signoutUser}/>
+      <NavBar  />
       <Switch>
-          {/* <Route path='/addcard'>
-            <AddCardPage />
-          </Route> */}
           <Route path='/createcard'>
-            <CreateCardPage user={user}
+            <CreateCardPage
               editTemplate={editTemplate}
-              handleAddMyCard={handleAddMyCard}/>
+              />
           </Route>
           <Route path='/editcard'>
             <EditCardPage editCard={editCard}/>
           </Route>
           <Route path='/mycards'>
-            <MyCardsPage user={user} 
+            <MyCardsPage 
               setEditCard={setEditCard} 
-              myCards={myCards} 
-              setMyCards={setMyCards}
-              handleMyCardDelete={handleMyCardDelete}
               />
           </Route>
           <Route path='/myprofile'>
-            <ProfilePage user={user}/>
+            <ProfilePage />
           </Route>
           <Route exact path='/'>
             <BrowseCardsPage 
-              // cards={cards} 
               setEditTemplate={setEditTemplate}
-              user={user}
               categories={categories}/>
           </Route>
       </Switch>

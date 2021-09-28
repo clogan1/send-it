@@ -44,7 +44,7 @@ import { signUpUser } from '../../Redux/Actions/index'
     }
  })
 
-function SignupForm( { setUser, setOpenModal } ) {
+function SignupForm( { setOpenModal } ) {
     const classes = useStyles()
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
@@ -77,7 +77,7 @@ function SignupForm( { setUser, setOpenModal } ) {
             if(res.ok){
                 res.json().then(user => {
                     // setUser(user)
-                    signUpUser(user)
+                    dispatch(signUpUser(user))
                     setOpenModal(false)
                 })
             }

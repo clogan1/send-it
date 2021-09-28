@@ -4,7 +4,9 @@ import {
     Container,
     Typography,
     makeStyles,
-} from '@material-ui/core'
+} from '@material-ui/core';
+import { useSelector } from "react-redux";
+
 
 const useStyles = makeStyles({
     container: {
@@ -40,13 +42,16 @@ const useStyles = makeStyles({
     })
 
 
-function ProfilePage( { user }) {
+function ProfilePage( {  }) {
     const classes = useStyles()
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [avatar, setAvatar] = useState('')
     const [editMode, toggleEditMode] = useState(false)
     const [errors, setErrors] = useState([])
+
+    const user = useSelector((state) => state.user.user);
+
 
     useEffect(() => {
         if(user){
@@ -89,7 +94,7 @@ function ProfilePage( { user }) {
             <Container >
             <Typography className={classes.header}><strong>my profile</strong></Typography>
             </Container>
-            <img src={user.avatar_url} alt={user.username} className={classes.image}/>
+            <img src={user.avatar_url ? user.avatar_url : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'} alt={user.username} className={classes.image}/>
                 { !editMode ? 
                     <>
                     <p>{user.username} <button onClick={() => toggleEditMode(true)}>edit</button></p>

@@ -6,7 +6,9 @@ import {
     makeStyles,
     Grid,
 
-} from '@material-ui/core'
+} from '@material-ui/core';
+import { useDispatch } from "react-redux";
+import { editMyCard } from '../../Redux/Actions/index'
 
 const useStyles = makeStyles({
     container: {
@@ -104,7 +106,7 @@ function EditCardPage( { editCard }) {
     const [scheduleSend, setScheduleSend] = useState()
     const [errors, setErrors] = useState([])
     const history = useHistory()
-
+    const dispatch = useDispatch()
 
     useEffect(()=> {
         setRecipientName(editCard.recipient_name)
@@ -135,7 +137,7 @@ function EditCardPage( { editCard }) {
         }).then(res => {
             if(res.ok){
                 res.json().then(card => {
-                    console.log(card)
+                    dispatch(editMyCard(card))
                     history.push('/mycards')
                 })
             }
