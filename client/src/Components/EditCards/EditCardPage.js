@@ -187,7 +187,7 @@ function EditCardPage( { editCard }) {
                                 />
                             <br></br>
                             <Typography className={classes.labels}>message:</Typography>
-                                <input 
+                                <textarea 
                                 type="text"
                                 id="message"
                                 value={message}

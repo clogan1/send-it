@@ -19,7 +19,7 @@ import { useSelector } from "react-redux";
 const useStyles = makeStyles({
     container: {
         backgroundColor: "#F3F2F2",
-        height: '100vh',
+        height: '100%',
         paddingTop: '10px',
         flexGrow: 1,},
         header: {

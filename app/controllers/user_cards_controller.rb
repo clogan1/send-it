@@ -30,7 +30,8 @@ class UserCardsController < ApplicationController
         user_card = UserCard.find(params[:id])
         user_card.update!(user_card_params)
         template_url = user_card.template.art_url
-        CardMailer.send_card(user_card, template_url).deliver_now
+        sending_user = User.find(user_card.user_id)
+        CardMailer.send_card(user_card, template_url, sending_user).deliver_now
         render json: user_card, status: :accepted
     end
 
