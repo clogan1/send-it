@@ -36,12 +36,15 @@ class UserCardsController < ApplicationController
     end
 
     def destroy
-        if send_date_check
-            send_date_check.destroy 
-            head :no_content
-        else
-            render json: {error: 'You cannot delete a card that has already been sent.'}
-        end
+        user_card = UserCard.find(params[:id])
+        user_card.destroy
+        head :no_content
+        # if send_date_check
+        #     send_date_check.destroy 
+        #     head :no_content
+        # else
+        #     render json: {error: 'You cannot delete a card that has already been sent.'}
+        # end
     end
 
     private 

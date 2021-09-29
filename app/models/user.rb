@@ -2,7 +2,7 @@ class User < ApplicationRecord
     has_secure_password
     
     belongs_to :role
-    has_many :user_cards
+    has_many :user_cards, dependent: :destroy 
     has_many :contributors
 
     validates :username, presence: true, uniqueness: true

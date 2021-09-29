@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
   get '/mycards', to: 'users#mycards'
   patch '/sendcard/:id', to: 'user_cards#email_card'
+  get '/enduserrole', to: 'roles#end_user_role'
   # resources :roles
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

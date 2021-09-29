@@ -73,7 +73,7 @@ Rails.application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :user_name            => "senditcardco@gmail.com",
-    :password             => "zikiututqcwxawaa",
+    :password             => "yjzynvsuwyjxjkgc",
     :authentication       => "plain",
     :enable_starttls_auto => true
   }

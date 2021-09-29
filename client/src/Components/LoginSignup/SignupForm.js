@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { 
     makeStyles,
     Container,
@@ -46,6 +46,7 @@ import { signUpUser } from '../../Redux/Actions/index'
 
 function SignupForm( { setOpenModal } ) {
     const classes = useStyles()
+    const [role, setRole] = useState('')
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -55,6 +56,12 @@ function SignupForm( { setOpenModal } ) {
 
     const dispatch = useDispatch()
 
+    useEffect(()=> {
+        fetch('/enduserrole')
+        .then(res => res.json())
+        .then(data => setRole(data.id))
+    })
+
     function handleSubmit (e) {
         e.preventDefault();
 
@@ -62,7 +69,7 @@ function SignupForm( { setOpenModal } ) {
             username: username,
             email: email,
             avatarUrl: avatarUrl,
-            role_id: 1,
+            role_id: role,
             password: password,
             password_confirmation: confirmPassword
         }
