@@ -20,6 +20,7 @@ const useStyles = makeStyles({
     container: {
         backgroundColor: "#F3F2F2",
         height: '100%',
+        minHeight: '100vh',
         paddingTop: '10px',
         flexGrow: 1,},
         header: {

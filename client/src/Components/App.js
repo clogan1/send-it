@@ -8,7 +8,8 @@ import CreateCardPage from './CreateCards/CreateCardPage';
 import MyCardsPage from './MyCards/MyCardsPage'
 import NavBar from './NavBar'
 import ProfilePage from './Profile/ProfilePage';
-import EditCardPage from './EditCards/EditCardPage'
+import EditCardPage from './EditCards/EditCardPage';
+import CreateTemplatePage from './CreateTemplate/CreateTemplatePage'
 import { useSelector, useDispatch } from "react-redux";
 import { getLoggedInUser } from '../Redux/Actions/index'
 
@@ -107,6 +108,9 @@ function App() {
             <MyCardsPage 
               setEditCard={setEditCard} 
               />
+          </Route>
+          <Route path='/createtemplate'>
+            <CreateTemplatePage categories={categories}/>
           </Route>
           <Route path='/myprofile'>
             <ProfilePage />

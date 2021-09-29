@@ -1,8 +1,5 @@
-import { useEffect, useState } from 'react'
 import {
     Box,
-    Checkbox,
-    FormControlLabel,
     makeStyles,
  } from '@material-ui/core';
 

@@ -47,6 +47,10 @@
 # western_goodbye = Template.create(category_id: farewell.id, name: 'so long partner', art_url: 'https://i.ibb.co/mqdChqD/HBD-1.png')
 # hearts = Template.create(category_id: getwell.id, name: 'hearts', art_url: 'https://i.ibb.co/K2VXNGX/HBD-2.png')
 
+# rainbow = Template.create(category_id: 1, name: 'rainbow', art_url: 'https://i.ibb.co/2j92mBN/16.png')
+# character = Template.create(category_id: 1, name: 'main character', art_url: 'https://i.ibb.co/5v9BpXF/17.png')
+# wedding = Template.create(category_id: 7, name: 'cheers', art_url: 'https://i.ibb.co/4t0jXr6/HBD-3.png')
+
 # puts 'done making templates'
 
 # puts 'creating user cards'

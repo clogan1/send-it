@@ -14,7 +14,7 @@ const initialTemplates = {
       case "ADD_TEMPLATE": {
         return {
           ...state,
-          templates: [...state.templates, action.payload]
+          templates: [action.payload, ...state.templates]
         }
       }
 

@@ -100,6 +100,8 @@ function NavBar( { openModal, setOpenModal } ) {
         history.push('/myprofile')
     }
 
+
+
     return (
         <AppBar 
             position="sticky" 
@@ -121,6 +123,21 @@ function NavBar( { openModal, setOpenModal } ) {
             </Box>
             { userObj ? 
                 <>
+                {(userObj.role.id === 2) ? 
+                            <>
+                            <Box className={location.pathname === "/createtemplate" ? classes.activeBox : classes.box}>
+                                <Typography
+                                component={NavLink}
+                                to="/createtemplate"
+                                className={location.pathname === "/createtemplate" ? classes.activeText : classes.boxText}
+                                >
+                                add card
+                                </Typography>
+                                </Box>
+                            </>
+                        :
+                        null
+                }
                 <Box className={location.pathname === "/mycards" ? classes.activeBox : classes.box}>
                     <Typography
                         component={NavLink}
