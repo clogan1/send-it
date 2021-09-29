@@ -13,10 +13,11 @@ import {
     },
     checkbox: {
         // width: '40px',
+        cursor: 'pointer',
     }
  })
 
-function Filter( { filter, setFilter, categories }) {
+function Filter( { filter, setFilter, categories, setPageNumber }) {
     const classes = useStyles()
     // const [categories, setCategories] = useState([])
 
@@ -31,9 +32,11 @@ function Filter( { filter, setFilter, categories }) {
     function handleCheck(e){
         if(e.target.checked) {
             setFilter([...filter, e.target.name])
+            setPageNumber(0)
         } else {
             const newFilter = filter.filter(each => each !== e.target.name)
             setFilter(newFilter)
+            setPageNumber(0)
         }
     }
 

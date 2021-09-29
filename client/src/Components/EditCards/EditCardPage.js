@@ -93,7 +93,10 @@ const useStyles = makeStyles({
         borderStyle: 'none',
         height: '30px',
         borderRadius: '12px',
-        marginTop: '10px'
+        marginTop: '10px',
+        marginRight: '30px',
+        "&:hover": {backgroundColor: '#84EBB9'},
+        cursor: 'pointer',
     }
 
 })
@@ -116,6 +119,10 @@ function EditCardPage( { editCard }) {
         // console.log(formattedDate)
         // setScheduleSend(editCard.schedule_send)
     }, [])
+
+    function handleCancel(){
+        history.push('/mycards')
+    }
 
 
     function handleSubmit(e){
@@ -206,6 +213,7 @@ function EditCardPage( { editCard }) {
                             <br></br> */}
                             <br></br>
                             <button type="submit" className={classes.button}>update card</button>
+                            <button onClick={handleCancel} className={classes.button}>back</button>
                         </form>
                         <Box className={classes.errorItem} >
                             {(errors.length > 0) ? 

@@ -8,18 +8,19 @@ import {
     select: { 
         width: '150px',
         height: '30px',
-        fontFamily: '"Roboto", sans-serif'
+        fontFamily: '"Roboto", sans-serif',
+        cursor: 'pointer',
     },
     box: {
         marginTop: '20px'
     }
  })
 
-function Sort( { sort, setSort }) {
+function Sort( { setSort }) {
     const classes = useStyles()
 
     function handleSort(e){
-        setSort(e.target.value)
+        setSort(e.target.value);
     }
 
     return (

@@ -24,7 +24,9 @@ const useStyles = makeStyles({
         boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
         padding: '5px',
        transition: 'transform .3s ease',
-        "&:hover": {transform: 'scale(1.5)'}
+        "&:hover": {
+            cursor: 'zoom-in',
+            transform: 'scale(1.5)'}
    },
    button: {
        backgroundColor: '#56E39F',
@@ -35,7 +37,8 @@ const useStyles = makeStyles({
        height: '30px',
        borderRadius: '12px',
        marginTop: '10px',
-       "&:hover": {backgroundColor: '#84EBB9'}
+       "&:hover": {backgroundColor: '#84EBB9'},
+       cursor: 'pointer',
 
    },
    gridBox : {

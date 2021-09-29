@@ -41,6 +41,38 @@ html, body {
   }
 }
 
+.paginationButtons {
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.paginationButtons a {
+  border-radius: 12px;
+  padding: 10px;
+  margin: 8px;
+  cursor: pointer;
+}
+
+.paginationButtons a:hover {
+  font-weight: bold;
+}
+
+.pagActive a {
+  font-weight: bold;
+}
+
+.pagDisabled a {
+  color: gray;
+}
+
+.pagDisabled a:hover {
+  cursor: not-allowed;
+  font-weight: normal
+}
 
 
 /* font-family: 'Source Serif Pro', serif; */

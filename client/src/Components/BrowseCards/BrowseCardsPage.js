@@ -2,12 +2,12 @@ import { useState, useEffect} from 'react'
 import Filter from './Filter'
 import Sort from './Sort'
 import CardList from './CardList'
+import ReactPaginate from 'react-paginate';
 import {
     Box,
     Typography,
     makeStyles,
     Grid,
-
 } from '@material-ui/core'
 import { useSelector, useDispatch } from "react-redux";
 import { getTemplates } from '../../Redux/Actions/index'
@@ -35,19 +35,42 @@ const useStyles = makeStyles({
         padding: '10px',
         backgroundColor: '#F3F2F2',
         height: '100%',
-    }
+        
+    },
+    // paginationButtons: {
+    //     width: '80%',
+    //     height: '40px',
+    //     listStyle: 'none',
+    //     display: 'flex',
+    //     justifyContent: 'center',
+        
+    // },
+    buttonDetail: {
+        borderRadius: '12px',
+        padding: '10px',
+        margin: '8px',
+        cursor: 'pointer',
+        "&:hover": {fontWeight: 'bold'}
+        }
 })
 
 function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
     const classes = useStyles()
     const [filter, setFilter] = useState([])
     const [sort, setSort] = useState('newest')
+    const [pageNumber, setPageNumber] = useState(0)
+    const [arrLength, setArrLength] = useState()
 
     const templates = useSelector((state) => state.templates.templates);
     const dispatch = useDispatch()
+
+    const cardsPerPage = 9
+    const cardsVisted = pageNumber * cardsPerPage
+    const pageCount = Math.ceil(arrLength / cardsPerPage)
   
     useEffect(() => {
       dispatch(getTemplates())
+      setArrLength(templates.length)
     }, [])
   
     // console.log("from store", templates)
@@ -70,7 +93,11 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
         else if (sort === 'popular'){
             if(first.count_of_user_cards > second.count_of_user_cards) return -1
         }
-    })
+    }).slice(cardsVisted, cardsVisted + cardsPerPage)
+
+    function changePage({ selected }){
+        setPageNumber(selected)
+    }
 
     return (
         <Box className={classes.container}>
@@ -78,9 +105,9 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
                 <Grid item xs={2} className={classes.filterContainer}>
                     <Box className={classes.filterBox}>
                     <Typography className={classes.filterText}>filter by</Typography>
-                        <Filter filter={filter} setFilter={setFilter} categories={categories}/>
-                    <Typography className={classes.filterText}>sort by</Typography>
-                        <Sort sort={sort} setSort={setSort}/>
+                        <Filter filter={filter} setFilter={setFilter} categories={categories} setPageNumber={setPageNumber}/>
+                    <Typography className={classes.filterText} >sort by</Typography>
+                        <Sort setSort={setSort}/>
                     </Box>
                 </Grid>
                 <Grid item xs={10} className={classes.cardContainer}>
@@ -88,8 +115,20 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
                     setEditTemplate={setEditTemplate}
                     setOpenModal={setOpenModal}
                     />
-                </Grid>
 
+                    <ReactPaginate 
+                    previousLabel={"Previous"}
+                    nextLabel={"Next"}
+                    pageCount={pageCount}
+                    onPageChange={changePage}
+                    containerClassName={"paginationButtons"}
+                    previousLinkClassName={"previousButton"}
+                    nextLinkClassName={"nextButton"}
+                    disabledClassName={"pagDisabled"}
+                    activeClassName={"pagActive"}
+                />
+                </Grid>
+              
             </Grid>
         </Box>
     

@@ -30,7 +30,7 @@ const useStyles = makeStyles({
     },
     logoBox: {
         // marginRight: '53%'
-        width: '70%'
+        width: '60%'
     },
     boxText: {
         fontSize: '20px',
@@ -45,12 +45,14 @@ const useStyles = makeStyles({
         color: 'black',
         textAlign: 'center',
         fontWeight: '600',
+        
     },
     box: {
         // float: 'right',
         marginLeft: '10px',
         width: '140px',
         textAlign: 'center',
+        cursor: 'pointer',
 
     },
     activeBox : {
@@ -59,12 +61,14 @@ const useStyles = makeStyles({
         marginLeft: '10px',
         width: '140px',
         textAlign: 'center',
+        cursor: 'pointer',
     },
     profilepic: {
         width: '56px',
         borderRadius: '50px',
         backgroundColor: 'white',
-        border: 'solid 1px black'
+        border: 'solid 1px black',
+        cursor: 'pointer',
     },
     profileBox: {
         marginRight: '10px'
