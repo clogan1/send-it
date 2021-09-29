@@ -4,6 +4,7 @@ import {
     Container,
     Typography,
     makeStyles,
+    Grid
 } from '@material-ui/core';
 import { useSelector } from "react-redux";
 
@@ -14,7 +15,7 @@ const useStyles = makeStyles({
         height: '100vh',
         flexGrow: 1,
         justifyContent: 'center',
-        textAlign: 'center',
+        // textAlign: 'center',
         paddingTop: '10px'
     },
         header: {
@@ -38,7 +39,10 @@ const useStyles = makeStyles({
             backgroundColor: 'white',
             borderStyle: 'none',
             width: '300px',
-            height: '30px'}
+            height: '30px'},
+        gridContainer: {
+            marginTop: '30px',
+        }
     })
 
 
@@ -93,8 +97,11 @@ function ProfilePage( {  }) {
             <Box className={classes.container}>
             <Container >
             <Typography className={classes.header}><strong>my profile</strong></Typography>
-            </Container>
+            <Grid container spacing={3} className={classes.gridContainer}>
+                <Grid item xs={3}>
             <img src={user.avatar_url ? user.avatar_url : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'} alt={user.username} className={classes.image}/>
+            </Grid>
+            <Grid item xs={9}>
                 { !editMode ? 
                     <>
                     <p>{user.username} <button onClick={() => toggleEditMode(true)}>edit</button></p>
@@ -124,6 +131,9 @@ function ProfilePage( {  }) {
                         :
                         null
                 }
+                </Grid>
+            </Grid>
+            </Container>
             </Box>
     )
 }

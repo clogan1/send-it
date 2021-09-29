@@ -1,12 +1,15 @@
 import { useHistory } from 'react-router-dom'
 import {
-    Box,
-    Container,
-    Typography,
     makeStyles,
     TableCell,
     TableRow
 } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import SendIcon from '@material-ui/icons/Send';
+import { grey } from '@material-ui/core/colors';
+
 import { useDispatch } from "react-redux";
 import { deleteMyCard, editMyCard } from '../../Redux/Actions/index'
 
@@ -33,6 +36,9 @@ const useStyles = makeStyles({
         "&:hover": {backgroundColor: '#84EBB9'}
 
     },
+    buttonSpace: {
+        marginRight: '10px'
+    }
 })
 
 
@@ -44,7 +50,6 @@ function RowItem({ card, setEditCard }) {
 
 
     let dateCreated = Date.parse(card.created_at)
-    console.log(card.schedule_send)
     let sendDate = (card.schedule_send) ? Date.parse(card.schedule_send) : null
    
 
@@ -95,10 +100,25 @@ function RowItem({ card, setEditCard }) {
             <TableCell>
                 { !card.is_sent ? 
                     <>
-                    <button className={classes.button} onClick={handleSendClick}>send it!</button>
-                    <button className={classes.button} onClick={handleEditClick}>edit</button>
-                    <button className={classes.button}
-                    onClick={handleDelete}>delete</button>
+                    {/* <button className={classes.button} onClick={handleSendClick}>send it</button> */}
+                    <span title="send card"> 
+                    <IconButton className={classes.buttonSpace} onClick={handleSendClick}>
+                        <SendIcon fontSize="small" style={{ color: '#56E39F' }}/>
+                    </IconButton>
+                    </span>
+                    <span title="edit card"> 
+                    <IconButton onClick={handleEditClick} className={classes.buttonSpace}>
+                        <EditIcon fontSize="small" style={{ color: grey[800] }}/>
+                    </IconButton>
+                    </span>
+                    {/* <button className={classes.button} onClick={handleEditClick}>edit</button> */}
+                    <span title="delete card"> 
+                    <IconButton onClick={handleDelete} className={classes.buttonSpace}>
+                       <DeleteIcon fontSize="small" style={{ color: grey[800] }}/>
+                    </IconButton>
+                    </span>
+                    {/* <button className={classes.button}
+                    onClick={handleDelete}>delete</button> */}
                     </>
                     :
                     null

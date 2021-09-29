@@ -26,12 +26,20 @@ const useStyles = makeStyles({
         header: {
             fontSize: '24px',
             fontWeight: '500',
-            marginBottom: '10px'
+            marginBottom: '10px',
+            marginRight: '50px',
+            float: 'left',
         },
         headerText: {
             color: 'black',
             fontWeight: '600',
-            fontSize: '14px'
+            fontSize: '14px',
+            position: 'sticky',
+            top: '0',
+        },
+        sticky: {
+            position: 'sticky',
+            top: '0',
         }
     })
 
@@ -53,13 +61,14 @@ function MyCardsPage( { setEditCard, handleMyCardDelete}) {
     return (
         <Box className={classes.container}>
             <Container>
+            <Box className={classes.sticky}>
             <Typography className={classes.header} onClick={handleCardToggle}><strong>my cards</strong></Typography>
             <Typography className={classes.header} onClick={handleContributionToggle}>my contributions</Typography>
-
+            </Box>
             <TableContainer>
                 <Table>
-                    <TableHead>
-                        <TableRow>
+                    <TableHead >
+                        <TableRow >
                             <TableCell className={classes.headerText} >preview</TableCell>
                             <TableCell className={classes.headerText} >status</TableCell>
                             <TableCell className={classes.headerText} >date created</TableCell>
