@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import {useHistory} from 'react-router-dom'
 import RowItem from './RowItem';
 import ReactPaginate from 'react-paginate';
 import {
@@ -48,8 +49,14 @@ function MyCardsPage( { setEditCard, handleMyCardDelete}) {
     const classes = useStyles()
     const [toggleCards, setToggleCards] = useState(true)
     const [pageNumber, setPageNumber] = useState(0)
+    const history = useHistory()
 
     const cards = useSelector((state) => state.myCards.myCards);
+    const user = useSelector((state) => state.user.user);
+
+    if(!user){
+        history.push('/')
+    }
 
     const cardsPerPage = 10
     const cardsVisted = pageNumber * cardsPerPage

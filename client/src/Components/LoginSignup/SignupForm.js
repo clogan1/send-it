@@ -40,7 +40,9 @@ import { signUpUser } from '../../Redux/Actions/index'
         borderStyle: 'none',
         height: '30px',
         borderRadius: '12px',
-        marginTop: '10px'
+        marginTop: '10px',
+        "&:hover": {backgroundColor: '#84EBB9'},
+        cursor: 'pointer',
     }
  })
 

@@ -8,7 +8,8 @@ import {
 
 } from '@material-ui/core';
 import { useDispatch } from "react-redux";
-import { editMyCard } from '../../Redux/Actions/index'
+import { editMyCard } from '../../Redux/Actions/index';
+import InviteContributorsModal from '../InviteContributorsModal'
 
 const useStyles = makeStyles({
     container: {
@@ -89,7 +90,20 @@ const useStyles = makeStyles({
         backgroundColor: '#56E39F',
         fontFamily: '"Roboto", sans-serif',
         fontSize: '14px',
-        width: '200px',
+        width: '150px',
+        borderStyle: 'none',
+        height: '30px',
+        borderRadius: '12px',
+        marginTop: '10px',
+        marginRight: '30px',
+        "&:hover": {backgroundColor: '#84EBB9'},
+        cursor: 'pointer',
+    },
+    backbutton: {
+        backgroundColor: '#CCCCCC',
+        fontFamily: '"Roboto", sans-serif',
+        fontSize: '14px',
+        width: '150px',
         borderStyle: 'none',
         height: '30px',
         borderRadius: '12px',
@@ -102,6 +116,9 @@ const useStyles = makeStyles({
         color: '#56E39F',
         fontSize: '12px',
         marginBottom: '5px',
+    },
+    contribBullet: {
+        fontSize: '12px'
     }
 
 })
@@ -113,15 +130,23 @@ function EditCardPage( { editCard }) {
     const [message, setMessage] = useState('')
     // const [scheduleSend, setScheduleSend] = useState()
     const [errors, setErrors] = useState([])
+    const[openContributorModal, setOpenContributorModal] = useState(false)
+    const [contributors, setContributors] = useState([])
     const history = useHistory()
     const dispatch = useDispatch()
 
-    console.log(editCard)
+    // console.log(editCard)
+
+    if(!editCard){
+        history.push('/')
+    }
+
 
     useEffect(()=> {
         setRecipientName(editCard.recipient_name)
         setRecipientEmail(editCard.recipient_email)
         setMessage(editCard.message)
+        setContributors(editCard.contributors)
         // let formattedDate = editCard.schedule_send.split('T').join('').split('.').shift().slice(0,-3)
         // console.log(formattedDate)
         // setScheduleSend(editCard.schedule_send)
@@ -129,6 +154,15 @@ function EditCardPage( { editCard }) {
 
     function handleCancel(){
         history.push('/mycards')
+    }
+
+    function handleContributorClick(e){
+        e.preventDefault()
+        setOpenContributorModal(true)
+    }
+
+    function addContrib(contrib){
+        setContributors([...contributors, contrib])
     }
 
 
@@ -177,7 +211,7 @@ function EditCardPage( { editCard }) {
                         <br></br>
                         <br></br>
                         <Typography className={classes.smallHeader}>other contributors:</Typography>
-                            {editCard.contributors.map(contrib => {
+                            {contributors.map(contrib => {
                                return (<p key={contrib.id}>{contrib.message}</p>)
                             })
                             }
@@ -217,6 +251,18 @@ function EditCardPage( { editCard }) {
                                 className={classes.message}
                                 />
                             <br></br>
+                            <Typography className={classes.labels}>other contributors:</Typography>
+                            <ul>
+                                {(editCard.contributors.length > 0) ? 
+                                (editCard.contributors.map(contrib => {
+                                    return (<li key={contrib.id} className={classes.contribBullet}>{contrib.email}</li>)
+                                })
+                                )
+                                    :
+                                    null
+                                }
+                            </ul>
+            
                             {/* <Typography className={classes.labels}>schedule send:</Typography>
                                 <input 
                                 type="datetime-local"
@@ -227,8 +273,9 @@ function EditCardPage( { editCard }) {
                                 />
                             <br></br> */}
                             <br></br>
-                            <button type="submit" className={classes.button}>update card</button>
-                            <button onClick={handleCancel} className={classes.button}>back</button>
+                            <button type="submit" className={classes.button}>save changes</button>
+                            <button onClick={handleContributorClick} className={classes.button}>invite others</button>
+                            <button onClick={handleCancel} className={classes.backbutton}>back</button>
                         </form>
                         <Box className={classes.errorItem} >
                             {(errors.length > 0) ? 
@@ -249,6 +296,12 @@ function EditCardPage( { editCard }) {
             </Grid>
 
         </Grid>
+        <InviteContributorsModal 
+            openContributorModal={openContributorModal}
+            setOpenContributorModal={setOpenContributorModal}
+            cardId={editCard.id}
+            addContrib={addContrib}
+        />
     </Box>
 
     )

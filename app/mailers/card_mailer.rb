@@ -5,6 +5,7 @@ class CardMailer < ApplicationMailer
         @user_card = user_card
         @template = template
         @sending_user = sending_user
+        # @contributors = contributors
         mail(to: user_card.recipient_email, cc: sending_user.email, subject: "💌 Card for #{user_card.recipient_name} from Send It")
     end
 

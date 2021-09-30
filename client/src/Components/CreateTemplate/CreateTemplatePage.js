@@ -86,7 +86,12 @@ function CreateTemplatePage( { categories }) {
     const user = useSelector((state) => state.user.user)
     const dispatch = useDispatch()
 
-    console.log(user.role.id)
+
+    if(!user){
+        history.push('/')
+    }   
+
+    // console.log(user.role.id)
 
     function handleSubmit(e) {
         e.preventDefault()

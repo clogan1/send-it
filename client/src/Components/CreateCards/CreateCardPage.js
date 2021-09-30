@@ -113,7 +113,9 @@ function CreateCardPage( { editTemplate }) {
     const user = useSelector((state) => state.user.user);
     const dispatch = useDispatch()
 
-
+    if(!editTemplate){
+        history.push('/')
+    }
 
     function handleSubmit(e){
         e.preventDefault()

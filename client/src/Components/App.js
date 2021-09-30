@@ -102,7 +102,7 @@ function App() {
               />
           </Route>
           <Route path='/editcard'>
-            <EditCardPage editCard={editCard}/>
+            <EditCardPage editCard={editCard} />
           </Route>
           <Route path='/mycards'>
             <MyCardsPage 

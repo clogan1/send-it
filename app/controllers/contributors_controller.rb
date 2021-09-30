@@ -5,12 +5,18 @@ class ContributorsController < ApplicationController
     end
 
     def create
-        if create_sent_check            
-            new_contrib = Contributor.create!(contributor_params)
-            render json: new_contrib, status: :created
-        else
-            render json: {error: 'You cannot add to a card that has already been sent.'}
-        end
+        # user_card = UserCard.find(params[:user_card_id])
+        # if user_card.is_sent         
+        #     render json: {error: 'You cannot add to a card that has already been sent.'}
+        # else
+            user = User.find_by(email: params[:email])
+            if user
+                new_contrib = user.contributors.create!(contributor_params)
+                render json: new_contrib, status: :created
+            else 
+                render json: {errors: ['There are no users with that email address.']}
+            end
+        # end
     end
 
     def update
@@ -29,10 +35,10 @@ class ContributorsController < ApplicationController
         params.permit(:user_id, :user_card_id, :message, :email)
     end
 
-    def create_sent_check
-        user_card = UserCard.find(params[:user_card_id])
-        return true unless user_card.is_sent == true
-    end
+    # def create_sent_check
+    #     user_card = UserCard.find(params[:user_card_id])
+    #     return true unless user_card.is_sent == true
+    # end
 
     def sent_card_check
         contributor = Contributor.find(params[:id])

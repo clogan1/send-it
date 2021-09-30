@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import {
     Box,
     Container,
@@ -53,8 +54,13 @@ function ProfilePage( {  }) {
     const [avatar, setAvatar] = useState('')
     const [editMode, toggleEditMode] = useState(false)
     const [errors, setErrors] = useState([])
+    const history = useHistory()
 
     const user = useSelector((state) => state.user.user);
+
+    if(!user){
+        history.push('/')
+    }
 
 
     useEffect(() => {
