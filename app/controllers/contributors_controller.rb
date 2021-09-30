@@ -5,7 +5,7 @@ class ContributorsController < ApplicationController
     end
 
     def create
-        if create_sent_check
+        if create_sent_check            
             new_contrib = Contributor.create!(contributor_params)
             render json: new_contrib, status: :created
         else
@@ -13,9 +13,10 @@ class ContributorsController < ApplicationController
         end
     end
 
-    def updated
+    def update
         if sent_card_check
-            contrib = sent_card_check.update!(contributor_params)
+            contrib = Contributor.find(params[:id])
+            contrib.update!(contributor_params)
             render json: contrib, status: :created
         else
             render json: {error: 'You cannot edit a card that has already been sent.'}
@@ -30,12 +31,12 @@ class ContributorsController < ApplicationController
 
     def create_sent_check
         user_card = UserCard.find(params[:user_card_id])
-        return true unless user_card.schedule_send < DateTime.now
+        return true unless user_card.is_sent == true
     end
 
     def sent_card_check
         contributor = Contributor.find(params[:id])
         user_card = UserCard.find(contributor.user_card_id)
-        return contributor unless user_card.schedule_send < DateTime.now
+        return contributor unless user_card.is_sent == true
     end
 end

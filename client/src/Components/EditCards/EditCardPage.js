@@ -97,6 +97,11 @@ const useStyles = makeStyles({
         marginRight: '30px',
         "&:hover": {backgroundColor: '#84EBB9'},
         cursor: 'pointer',
+    },
+    smallHeader: {
+        color: '#56E39F',
+        fontSize: '12px',
+        marginBottom: '5px',
     }
 
 })
@@ -110,6 +115,8 @@ function EditCardPage( { editCard }) {
     const [errors, setErrors] = useState([])
     const history = useHistory()
     const dispatch = useDispatch()
+
+    console.log(editCard)
 
     useEffect(()=> {
         setRecipientName(editCard.recipient_name)
@@ -165,7 +172,15 @@ function EditCardPage( { editCard }) {
                 <Grid item xs={12} className={classes.prevBox}>
                     { editCard ? <img src={editCard.template.art_url} className={classes.image}/> : null }
                     <Box className={classes.card}>
+                        <Typography className={classes.smallHeader}>my message:</Typography>
                         {message}
+                        <br></br>
+                        <br></br>
+                        <Typography className={classes.smallHeader}>other contributors:</Typography>
+                            {editCard.contributors.map(contrib => {
+                               return (<p key={contrib.id}>{contrib.message}</p>)
+                            })
+                            }
                     </Box>
                 </Grid>
                 </Box>
