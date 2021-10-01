@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import {useHistory} from 'react-router-dom'
 import RowItem from './RowItem';
+import RowItemContrib from './RowItemContrib'
 import ReactPaginate from 'react-paginate';
 import {
     Box,
@@ -31,6 +32,16 @@ const useStyles = makeStyles({
             marginBottom: '10px',
             marginRight: '50px',
             float: 'left',
+            cursor: 'pointer',
+            "&:hover": {fontWeight: '600'},
+        },
+        headerActive: {
+            fontSize: '24px',
+            fontWeight: '600',
+            marginBottom: '10px',
+            marginRight: '50px',
+            float: 'left',
+            cursor: 'pointer',
         },
         headerText: {
             color: 'black',
@@ -45,18 +56,21 @@ const useStyles = makeStyles({
         }
     })
 
-function MyCardsPage( { setEditCard, handleMyCardDelete}) {
+function MyCardsPage( { setEditCard, handleMyCardDelete, setEditContrib}) {
     const classes = useStyles()
     const [toggleCards, setToggleCards] = useState(true)
     const [pageNumber, setPageNumber] = useState(0)
     const history = useHistory()
 
     const cards = useSelector((state) => state.myCards.myCards);
+    const contribs = useSelector((state) => state.myCards.myContributions);
     const user = useSelector((state) => state.user.user);
 
     if(!user){
         history.push('/')
     }
+
+    // console.log(contribs)
 
     const cardsPerPage = 10
     const cardsVisted = pageNumber * cardsPerPage
@@ -64,13 +78,17 @@ function MyCardsPage( { setEditCard, handleMyCardDelete}) {
 
     function handleCardToggle(){
         setToggleCards(true)
+        setPageNumber(0)
     }
 
     function handleContributionToggle(){
         setToggleCards(false)
+        setPageNumber(0)
     }
 
     const displayCards = cards.slice(cardsVisted, cardsVisted + cardsPerPage)
+
+    const displayContribs = contribs.slice(cardsVisted, cardsVisted + cardsPerPage)
 
     function changePage({ selected }){
         setPageNumber(selected)
@@ -80,8 +98,8 @@ function MyCardsPage( { setEditCard, handleMyCardDelete}) {
         <Box className={classes.container}>
             <Container>
             <Box className={classes.sticky}>
-            <Typography className={classes.header} onClick={handleCardToggle}><strong>my cards</strong></Typography>
-            <Typography className={classes.header} onClick={handleContributionToggle}>my contributions</Typography>
+            <Typography className={toggleCards? classes.headerActive : classes.header} onClick={handleCardToggle}>my cards</Typography>
+            <Typography className={toggleCards? classes.header : classes.headerActive} onClick={handleContributionToggle}>my contributions</Typography>
             </Box>
             <TableContainer>
                 <Table>
@@ -96,7 +114,11 @@ function MyCardsPage( { setEditCard, handleMyCardDelete}) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {displayCards.map(card => <RowItem card={card} key={card.id} handleMyCardDelete={handleMyCardDelete} setEditCard={setEditCard}/>)
+                        {toggleCards ? 
+                            displayCards.map(card => <RowItem card={card} key={card.id} handleMyCardDelete={handleMyCardDelete} setEditCard={setEditCard}/>)
+                        :
+                            displayContribs.map(contrib => <RowItemContrib contrib={contrib} key={contrib.id} card={contrib.user_card} setEditCard={setEditCard}
+                            setEditContrib={setEditContrib} />)
                         }
                     </TableBody>
                 </Table>

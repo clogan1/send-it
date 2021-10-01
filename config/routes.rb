@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   
   resources :contributors, only: [:create, :update, :index]
-  resources :user_cards, only: [:create, :update, :destroy, :index] do
+  resources :user_cards, only: [:create, :update, :destroy, :index, :show] do
     resources :contributors, only: [:index]
   end
-  resources :templates, only: [:index, :create]
+  resources :templates, only: [:index, :create, :show]
   resources :categories, only: [:index, :show]
   resources :users, only: [:show, :create, :update, :index] do
     resources :user_cards, only: [:index]
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/me', to: 'users#show'
   get '/mycards', to: 'users#mycards'
+  get '/mycontributions', to: 'users#mycontributors'
   patch '/sendcard/:id', to: 'user_cards#email_card'
   get '/enduserrole', to: 'roles#end_user_role'
   # resources :roles

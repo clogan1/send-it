@@ -9,6 +9,7 @@ import MyCardsPage from './MyCards/MyCardsPage'
 import NavBar from './NavBar'
 import ProfilePage from './Profile/ProfilePage';
 import EditCardPage from './EditCards/EditCardPage';
+import EditContributor from './EditCards/EditContributor'
 import CreateTemplatePage from './CreateTemplate/CreateTemplatePage'
 import { useSelector, useDispatch } from "react-redux";
 import { getLoggedInUser } from '../Redux/Actions/index'
@@ -17,6 +18,7 @@ import { getLoggedInUser } from '../Redux/Actions/index'
 function App() {
   const [editTemplate, setEditTemplate] = useState('')
   const [editCard, setEditCard] = useState('')
+  const [editContrib, setEditContrib] = useState('')
   const [categories, setCategories] = useState([])
   const [openModal, setOpenModal] = useState(false);
   // const [user, setUser] = useState(null)
@@ -104,9 +106,13 @@ function App() {
           <Route path='/editcard'>
             <EditCardPage editCard={editCard} />
           </Route>
+          <Route path='/editcontributor'>
+            <EditContributor editCard={editCard} editContrib={editContrib} />
+          </Route>
           <Route path='/mycards'>
             <MyCardsPage 
-              setEditCard={setEditCard} 
+              setEditCard={setEditCard}
+              setEditContrib={setEditContrib} 
               />
           </Route>
           <Route path='/createtemplate'>

@@ -32,6 +32,11 @@
                     .then(cards =>{
                       dispatch( {type: "SET_MY_CARDS", payload: cards })
                     })
+                    fetch('/mycontributions')
+                    .then(res => res.json())
+                    .then(contribs =>{
+                      dispatch( {type: "SET_MY_CONTRIBUTIONS", payload: contribs })
+                    })
                   })
                 }
             })
@@ -44,6 +49,8 @@
     return (dispatch, getState) => {
           dispatch( {type: "LOG_OUT_USER" } )
           dispatch( {type: "CLEAR_CARDS" } )
+          dispatch( {type: "CLEAR_CONTRIBUTIONS" } )
+
       }
   }
 
@@ -56,6 +63,11 @@
       .then(cards =>{
         dispatch( {type: "SET_MY_CARDS", payload: cards })
       })
+      fetch('/mycontributions')
+      .then(res => res.json())
+      .then(contribs =>{
+        dispatch( {type: "SET_MY_CONTRIBUTIONS", payload: contribs })
+      })
       }
   }
 
@@ -63,11 +75,11 @@
   export function signUpUser(user){
     return (dispatch, getState) => {
       dispatch( {type: "SIGN_UP_USER", payload: user })
-      fetch( `/mycards`)
-      .then(res => res.json())
-      .then(cards =>{
-        dispatch( {type: "SET_MY_CARDS", payload: cards })
-      })
+      // fetch( `/mycards`)
+      // .then(res => res.json())
+      // .then(cards =>{
+      //   dispatch( {type: "SET_MY_CARDS", payload: cards })
+      // })
       }
   }
 
@@ -95,6 +107,14 @@ export function deleteMyCard(card) {
     dispatch({ type: "DELETE_CARD", payload: card})
   }
 }
+
+
+export function editMyContributors(contrib) {
+  return (dispatch, getState) => {
+    dispatch({ type: "EDIT_CONTRIBUTION", payload: contrib})
+  }
+}
+
 
 
 

@@ -27,6 +27,13 @@ class UsersController < ApplicationController
         render json: cards
     end
 
+     # /mycontributions
+     def mycontributors
+        user = User.find_by(id: session[:user_id])
+        contributor = user.contributors.order("created_at DESC")
+        render json: contributor
+    end
+
 
     # /users/:id
     def update

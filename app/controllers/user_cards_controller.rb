@@ -4,6 +4,11 @@ class UserCardsController < ApplicationController
         render json: UserCard.all.order("created_at DESC")
     end
 
+    def show
+        card = UserCard.find(params[:id])
+        render json: card
+    end
+
     def create
         user_card = UserCard.create!(user_card_params)
         # template_url = user_card.template.art_url

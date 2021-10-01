@@ -1,5 +1,6 @@
 const initialMyCards = {
-    myCards: []
+    myCards: [],
+    myContributions: []
   };
   
   export function myCardsReducer(state = initialMyCards, action) {
@@ -47,7 +48,35 @@ const initialMyCards = {
           }
       }
 
+      case "SET_MY_CONTRIBUTIONS": {
+        return {
+          ...state,
+          myContributions: action.payload
+        }
+      }
+
+      case "CLEAR_CONTRIBUTIONS": {
+        return {
+          ...state,
+          myContributions: []
+        }
+      }
+
+      case "EDIT_CONTRIBUTION": {
+        // console.log("from edit card:", action.payload)
+        const newMyContributor = state.myContributions.map(contrib => {
+            if(contrib.id === action.payload.id){
+              return action.payload
+            }
+            else return contrib
+          })
+        return {
+            ...state,
+            myContributions: newMyContributor
+            }
+      }
+
       default:
         return state;
-    }
+    }   
   }

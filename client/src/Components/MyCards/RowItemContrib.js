@@ -1,4 +1,5 @@
 import { useHistory } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import {
     makeStyles,
     TableCell,
@@ -11,7 +12,7 @@ import SendIcon from '@material-ui/icons/Send';
 import { grey } from '@material-ui/core/colors';
 
 import { useDispatch } from "react-redux";
-import { deleteMyCard, editMyCard } from '../../Redux/Actions/index'
+
 
 
 const useStyles = makeStyles({
@@ -44,10 +45,18 @@ const useStyles = makeStyles({
 
 
 
-function RowItem({ card, setEditCard }) {
+function RowItemContrib({ card, contrib, setEditCard, setEditContrib}) {
     const classes = useStyles()
     const history = useHistory()
     const dispatch = useDispatch()
+    const [imgUrl, setImgUrl] = useState('')
+
+    useEffect(()=> {
+        fetch(`/templates/${card.template_id}`)
+        .then(res => res.json())
+        .then(temp => setImgUrl(temp.art_url))
+
+    }, [])
 
 
     let dateCreated = Date.parse(card.created_at)
@@ -57,43 +66,16 @@ function RowItem({ card, setEditCard }) {
     dateCreated = new Intl.DateTimeFormat('en-US').format(dateCreated)
     sendDate = (sendDate) ? new Intl.DateTimeFormat('en-US').format(sendDate) : null
 
-    function handleDelete(){
-        fetch(`/user_cards/${card.id}`, {
-            method: 'DELETE',
-            headers: { Accept: 'application/json'}
-        }).then(dispatch(deleteMyCard(card)))
-    }
-
     function handleEditClick(){
         setEditCard(card)
-        history.push('/editcard')
+        setEditContrib(contrib)
+        history.push('/editcontributor')
     }
 
-    function handleSendClick(){
-        console.log("Send it!")
-        const t = new Date(Date.now()).toISOString()
-        const updatedUserCard = {
-            is_sent: true,
-            schedule_send: t
-        }
-        fetch(`/sendcard/${card.id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedUserCard)
-        }).then(res => {
-            if(res.ok){
-                res.json().then(card => {
-                    dispatch(editMyCard(card))
-                })
-            }
-        })
-    }
 
     return (
         <TableRow>
-            <TableCell><img className={classes.prevImage} src={card.template.art_url} alt={card.id}/></TableCell>
+            <TableCell><img className={classes.prevImage} src={imgUrl} /></TableCell>
             <TableCell className={classes.text}>{card.is_sent ? "sent" : "not sent"}</TableCell>
             <TableCell className={classes.text}>{dateCreated}</TableCell>
             <TableCell className={classes.text}>{sendDate}</TableCell>
@@ -101,33 +83,18 @@ function RowItem({ card, setEditCard }) {
             <TableCell>
                 { !card.is_sent ? 
                     <>
-                    {/* <button className={classes.button} onClick={handleSendClick}>send it</button> */}
-                    <span title="send card"> 
-                    <IconButton className={classes.buttonSpace} onClick={handleSendClick}>
-                        <SendIcon fontSize="small" style={{ color: '#56E39F' }}/>
-                    </IconButton>
-                    </span>
                     <span title="edit card"> 
-                    <IconButton onClick={handleEditClick} className={classes.buttonSpace}>
+                    <IconButton className={classes.buttonSpace} onClick={handleEditClick}>
                         <EditIcon fontSize="small" style={{ color: grey[800] }}/>
                     </IconButton>
                     </span>
-                    {/* <button className={classes.button} onClick={handleEditClick}>edit</button> */}
-                    <span title="delete card"> 
-                    <IconButton onClick={handleDelete} className={classes.buttonSpace}>
-                       <DeleteIcon fontSize="small" style={{ color: grey[800] }}/>
-                    </IconButton>
-                    </span>
-                    {/* <button className={classes.button}
-                    onClick={handleDelete}>delete</button> */}
                     </>
                     :
                     null
                 }
-
             </TableCell>
         </TableRow>
     )
 }
 
-export default RowItem
+export default RowItemContrib

@@ -5,6 +5,11 @@ class TemplatesController < ApplicationController
         render json: Template.all.order("created_at DESC")
     end
 
+    def show
+        template = Template.find(params[:id])
+        render json: template
+    end
+
     # artists only
     def create
         template = Template.create!(template_params)
