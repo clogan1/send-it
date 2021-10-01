@@ -1,4 +1,5 @@
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import { useState } from 'react'
 import {
     makeStyles,
     TableCell,
@@ -8,10 +9,12 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import SendIcon from '@material-ui/icons/Send';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import { grey } from '@material-ui/core/colors';
 
 import { useDispatch } from "react-redux";
 import { deleteMyCard, editMyCard } from '../../Redux/Actions/index'
+import InviteContributorsModal from '../InviteContributorsModal'
 
 
 const useStyles = makeStyles({
@@ -48,7 +51,7 @@ function RowItem({ card, setEditCard }) {
     const classes = useStyles()
     const history = useHistory()
     const dispatch = useDispatch()
-
+    const[openContributorModal, setOpenContributorModal] = useState(false)
 
     let dateCreated = Date.parse(card.created_at)
     let sendDate = (card.schedule_send) ? Date.parse(card.schedule_send) : null
@@ -69,8 +72,17 @@ function RowItem({ card, setEditCard }) {
         history.push('/editcard')
     }
 
+
+    function handleInviteOthers(){
+        setOpenContributorModal(true)
+    }
+
+    function addContrib(contrib){
+        console.log("contrib")
+    }
+
     function handleSendClick(){
-        console.log("Send it!")
+        // console.log("Send it!")
         const t = new Date(Date.now()).toISOString()
         const updatedUserCard = {
             is_sent: true,
@@ -112,6 +124,11 @@ function RowItem({ card, setEditCard }) {
                         <EditIcon fontSize="small" style={{ color: grey[800] }}/>
                     </IconButton>
                     </span>
+                    <span title="invite others to sign"> 
+                    <IconButton onClick={handleInviteOthers} className={classes.buttonSpace}>
+                        <SupervisorAccountIcon fontSize="small" style={{ color: grey[800] }}/>
+                    </IconButton>
+                    </span>
                     {/* <button className={classes.button} onClick={handleEditClick}>edit</button> */}
                     <span title="delete card"> 
                     <IconButton onClick={handleDelete} className={classes.buttonSpace}>
@@ -126,6 +143,12 @@ function RowItem({ card, setEditCard }) {
                 }
 
             </TableCell>
+            <InviteContributorsModal 
+            openContributorModal={openContributorModal}
+            setOpenContributorModal={setOpenContributorModal}
+            cardId={card.id}
+            addContrib={addContrib}
+            />
         </TableRow>
     )
 }

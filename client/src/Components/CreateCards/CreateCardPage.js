@@ -8,7 +8,7 @@ import {
 
 } from '@material-ui/core'
 import { useSelector, useDispatch } from "react-redux";
-import { addMyCard } from '../../Redux/Actions/index'
+import { addMyCard } from '../../Redux/Actions/index';
 
 
 const useStyles = makeStyles({

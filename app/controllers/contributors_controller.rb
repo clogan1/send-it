@@ -12,6 +12,7 @@ class ContributorsController < ApplicationController
             user = User.find_by(email: params[:email])
             if user
                 new_contrib = user.contributors.create!(contributor_params)
+                CardMailer.notify_contributor(user).deliver_now
                 render json: new_contrib, status: :created
             else 
                 render json: {errors: ['There are no users with that email address.']}

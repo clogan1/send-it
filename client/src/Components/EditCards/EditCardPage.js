@@ -253,8 +253,8 @@ function EditCardPage( { editCard }) {
                             <br></br>
                             <Typography className={classes.labels}>other contributors:</Typography>
                             <ul>
-                                {(editCard.contributors.length > 0) ? 
-                                (editCard.contributors.map(contrib => {
+                                {(contributors.length > 0) ? 
+                                (contributors.map(contrib => {
                                     return (<li key={contrib.id} className={classes.contribBullet}>{contrib.email}</li>)
                                 })
                                 )
