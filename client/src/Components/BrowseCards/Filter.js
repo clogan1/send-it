@@ -12,22 +12,12 @@ import {
         marginTop: '20px'
     },
     checkbox: {
-        // width: '40px',
         cursor: 'pointer',
     }
  })
 
 function Filter( { filter, setFilter, categories, setPageNumber}) {
     const classes = useStyles()
-    // const [categories, setCategories] = useState([])
-
-    // useEffect(()=>{
-    //     fetch('/categories')
-    //     .then(res => res.json())
-    //     .then(cats => setCategories(cats))
-    // }, [])
-
-    // console.log(categories)
 
     function handleCheck(e){
         if(e.target.checked) {

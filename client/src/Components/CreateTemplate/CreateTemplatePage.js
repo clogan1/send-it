@@ -12,9 +12,7 @@ import { addTemplate } from '../../Redux/Actions/index';
 const useStyles = makeStyles({
     container: {
         backgroundColor: "#F3F2F2",
-        height: '100%',
-        minHeight: '100vh',
-        paddingTop: '10px',
+        paddingTop: '20px',
         flexGrow: 1,
         },
         header: {
@@ -33,16 +31,7 @@ const useStyles = makeStyles({
             backgroundColor: '#F3F2F2',
             borderRadius: '6px',
             borderStyle: 'none',
-            width: '500px',
-            height: '40px'
-          },
-          formItems : {
-            marginTop: '10px',
-            marginBottom: '10px',
-            backgroundColor: '#F3F2F2',
-            borderRadius: '6px',
-            borderStyle: 'none',
-            width: '500px',
+            width: '80%',
             height: '40px'
           },
           formDiv: {
@@ -52,13 +41,13 @@ const useStyles = makeStyles({
               justifyContent: 'center,',
               boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
               borderRadius: '6px',
+              width: '60%'
           },
           labels: {
             textAlign: 'left'
           },
           errorItem: {
-            marginTop: '20px',
-            marginBottom: '20px',
+            fontSize: '12px'
           },
           button: {
             backgroundColor: '#56E39F',
@@ -69,6 +58,7 @@ const useStyles = makeStyles({
             height: '30px',
             borderRadius: '12px',
             marginTop: '10px',
+            marginBottom: '10px',
             "&:hover": {backgroundColor: '#84EBB9'},
             cursor: 'pointer',
         }
@@ -86,12 +76,9 @@ function CreateTemplatePage( { categories }) {
     const user = useSelector((state) => state.user.user)
     const dispatch = useDispatch()
 
-
     if(!user){
         history.push('/')
     }   
-
-    // console.log(user.role.id)
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -176,7 +163,8 @@ function CreateTemplatePage( { categories }) {
                                 (
                                     <>
                                         {errors.map(err => (
-                                            <Typography key={err} color="error">{err}</Typography>
+                                            <Typography key={err} color="error"
+                                            className={classes.errorItem}>{err}</Typography>
                                         ))
                                         }
                                     </>

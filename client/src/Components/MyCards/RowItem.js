@@ -9,11 +9,12 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import SendIcon from '@material-ui/icons/Send';
+import Tooltip from '@material-ui/core/Tooltip';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import { grey } from '@material-ui/core/colors';
 
 import { useDispatch } from "react-redux";
-import { deleteMyCard, editMyCard } from '../../Redux/Actions/index'
+import { deleteMyCard, editMyCard, updateContribList } from '../../Redux/Actions/index'
 import InviteContributorsModal from '../InviteContributorsModal'
 
 
@@ -78,11 +79,11 @@ function RowItem({ card, setEditCard }) {
     }
 
     function addContrib(contrib){
+        dispatch(updateContribList(contrib))
         console.log("contrib")
     }
 
     function handleSendClick(){
-        // console.log("Send it!")
         const t = new Date(Date.now()).toISOString()
         const updatedUserCard = {
             is_sent: true,
@@ -113,30 +114,26 @@ function RowItem({ card, setEditCard }) {
             <TableCell>
                 { !card.is_sent ? 
                     <>
-                    {/* <button className={classes.button} onClick={handleSendClick}>send it</button> */}
-                    <span title="send card"> 
+                    <Tooltip title="send card"> 
                     <IconButton className={classes.buttonSpace} onClick={handleSendClick}>
                         <SendIcon fontSize="small" style={{ color: '#56E39F' }}/>
                     </IconButton>
-                    </span>
-                    <span title="edit card"> 
+                    </Tooltip>
+                    <Tooltip title="edit card"> 
                     <IconButton onClick={handleEditClick} className={classes.buttonSpace}>
                         <EditIcon fontSize="small" style={{ color: grey[800] }}/>
                     </IconButton>
-                    </span>
-                    <span title="invite others to sign"> 
+                    </Tooltip>
+                    <Tooltip title="invite others to sign"> 
                     <IconButton onClick={handleInviteOthers} className={classes.buttonSpace}>
                         <SupervisorAccountIcon fontSize="small" style={{ color: grey[800] }}/>
                     </IconButton>
-                    </span>
-                    {/* <button className={classes.button} onClick={handleEditClick}>edit</button> */}
-                    <span title="delete card"> 
+                    </Tooltip>
+                    <Tooltip title="delete card"> 
                     <IconButton onClick={handleDelete} className={classes.buttonSpace}>
                        <DeleteIcon fontSize="small" style={{ color: grey[800] }}/>
                     </IconButton>
-                    </span>
-                    {/* <button className={classes.button}
-                    onClick={handleDelete}>delete</button> */}
+                    </Tooltip>
                     </>
                     :
                     null

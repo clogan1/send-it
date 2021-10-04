@@ -106,7 +106,6 @@ function CreateCardPage( { editTemplate }) {
     const [recipientName, setRecipientName]= useState('')
     const [recipientEmail, setRecipientEmail] = useState('')
     const [message, setMessage] = useState('')
-    // const [scheduleSend, setScheduleSend] = useState('')
     const [errors, setErrors] = useState([])
     const history = useHistory()
 
@@ -127,7 +126,6 @@ function CreateCardPage( { editTemplate }) {
             recipient_email: recipientEmail,
             message: message,
             is_sent: false,
-            // schedule_send: scheduleSend
         }
 
         fetch('/user_cards', {
@@ -139,8 +137,6 @@ function CreateCardPage( { editTemplate }) {
         }).then(res => {
             if(res.ok){
                 res.json().then(card => {
-                    // console.log(card)
-                    //handleAddMyCard(card)
                     dispatch(addMyCard(card))
                     history.push('/mycards')
                 })
@@ -161,8 +157,6 @@ function CreateCardPage( { editTemplate }) {
                 <Typography className={classes.header}>preview</Typography>
                 <Grid item xs={12} className={classes.prevBox}>
                     <img src={editTemplate.art_url} className={classes.image}/>
-                {/* </Grid> */}
-                {/* <Grid item xs={6} className={classes.prevBox}> */}
                     <Box className={classes.card}>
                         {message}
                     </Box>
@@ -201,15 +195,6 @@ function CreateCardPage( { editTemplate }) {
                                 className={classes.message}
                                 />
                             <br></br>
-                            {/* <Typography className={classes.labels}>schedule send:</Typography>
-                                <input 
-                                type="datetime-local"
-                                id="scheduleSend"
-                                value={scheduleSend}
-                                onChange={(e) => setScheduleSend(e.target.value)}
-                                className={classes.formItems}
-                                />
-                            <br></br> */}
                             <br></br>
                             <button type="submit" className={classes.button}>create card</button>
                         </form>

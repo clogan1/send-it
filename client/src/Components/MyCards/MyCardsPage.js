@@ -8,7 +8,6 @@ import {
     Container,
     Typography,
     makeStyles,
-    Grid,
     Table,
     TableBody,
     TableCell,
@@ -22,10 +21,10 @@ import { useSelector } from "react-redux";
 const useStyles = makeStyles({
     container: {
         backgroundColor: "#F3F2F2",
-        height: '100%',
-        minHeight: '100vh',
-        paddingTop: '10px',
-        flexGrow: 1,},
+        paddingTop: '20px',
+        overflow: 'visible',
+        flexGrow: 1,
+    },
         header: {
             fontSize: '24px',
             fontWeight: '500',
@@ -34,6 +33,10 @@ const useStyles = makeStyles({
             float: 'left',
             cursor: 'pointer',
             "&:hover": {fontWeight: '600'},
+            // overflow: 'visible',
+            // position: 'sticky',
+            // top: '0px',
+
         },
         headerActive: {
             fontSize: '24px',
@@ -42,17 +45,28 @@ const useStyles = makeStyles({
             marginRight: '50px',
             float: 'left',
             cursor: 'pointer',
+            // overflow: 'visible',
+            // position: 'sticky',
+            // top: '0px',
+
         },
         headerText: {
             color: 'black',
             fontWeight: '600',
             fontSize: '14px',
-            position: 'sticky',
-            top: '0',
+            // overflow: 'visible',
+            // position: 'sticky',
+            // top: '0px',
+
         },
         sticky: {
             position: 'sticky',
-            top: '0',
+            top: '0px',
+            overflow: 'visible',
+
+        },
+        overflow: {
+            overflow: 'visible'
         }
     })
 
@@ -66,11 +80,10 @@ function MyCardsPage( { setEditCard, handleMyCardDelete, setEditContrib}) {
     const contribs = useSelector((state) => state.myCards.myContributions);
     const user = useSelector((state) => state.user.user);
 
+
     if(!user){
         history.push('/')
     }
-
-    // console.log(contribs)
 
     const cardsPerPage = 10
     const cardsVisted = pageNumber * cardsPerPage
@@ -96,14 +109,14 @@ function MyCardsPage( { setEditCard, handleMyCardDelete, setEditContrib}) {
 
     return (
         <Box className={classes.container}>
-            <Container>
+            <Container className={classes.overflow}>
             <Box className={classes.sticky}>
-            <Typography className={toggleCards? classes.headerActive : classes.header} onClick={handleCardToggle}>my cards</Typography>
-            <Typography className={toggleCards? classes.header : classes.headerActive} onClick={handleContributionToggle}>my contributions</Typography>
+                <Typography className={toggleCards? classes.headerActive : classes.header} onClick={handleCardToggle}>my cards</Typography>
+                <Typography className={toggleCards? classes.header : classes.headerActive} onClick={handleContributionToggle}>my contributions</Typography>
             </Box>
             <TableContainer>
-                <Table>
-                    <TableHead >
+                <Table >
+                    <TableHead className={classes.sticky}>
                         <TableRow >
                             <TableCell className={classes.headerText} >preview</TableCell>
                             <TableCell className={classes.headerText} >status</TableCell>

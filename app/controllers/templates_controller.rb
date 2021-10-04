@@ -10,18 +10,11 @@ class TemplatesController < ApplicationController
         render json: template
     end
 
-    # artists only
+    # artists only 
     def create
         template = Template.create!(template_params)
         render json: template, status: :created
     end
-
-    # temporary so I could update db
-    # def update
-    #     template = Template.find(params[:id])
-    #     template.update!(template_params)
-    #     render json: template, status: :accepted
-    # end
 
     private 
 

@@ -10,10 +10,10 @@ class UserCard < ApplicationRecord
     # validates :schedule_send, presence: true
     # validate :schedule_send_in_future
 
-    def schedule_send_in_future
-        if self.schedule_send < DateTime.now
-            errors.add(:schedule_send, 'Scheduled send date must be in the future.')
-        end
-    end
+    # def schedule_send_in_future
+    #     if self.schedule_send < DateTime.now
+    #         errors.add(:schedule_send, 'Scheduled send date must be in the future.')
+    #     end
+    # end
 
 end

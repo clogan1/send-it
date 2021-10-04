@@ -1,7 +1,5 @@
 import CardItem from './CardItem'
 import {
-    Box,
-    Typography,
     makeStyles,
     Grid,
     Container
@@ -16,8 +14,6 @@ const useStyles = makeStyles({
 
 function CardList({ cards, setEditTemplate, setOpenModal }) {
     const classes = useStyles()
-
-    // console.log("from list:", cards)
 
     return (
         <Container className={classes.container}>

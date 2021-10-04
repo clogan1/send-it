@@ -83,6 +83,11 @@
       }
   }
 
+  export function updateUser(user){
+    return (dispatch, getState) => {
+      dispatch( {type: "UPDATE_USER", payload: user } )
+    }
+  }
 
 //my cards CRUD
 
@@ -98,6 +103,13 @@ export function addMyCard(card) {
 export function editMyCard(card) {
   return (dispatch, getState) => {
     dispatch({ type: "EDIT_CARD", payload: card})
+  }
+}
+
+// update contributors for card
+export function updateContribList(contrib){
+  return (dispatch, getState) => {
+    dispatch({ type: "ADD_CONTRIBUTOR_TO_CARD", payload: contrib})
   }
 }
 

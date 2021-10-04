@@ -6,9 +6,8 @@ import {
     TableRow
 } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import SendIcon from '@material-ui/icons/Send';
+import Tooltip from '@material-ui/core/Tooltip';
 import { grey } from '@material-ui/core/colors';
 
 import { useDispatch } from "react-redux";
@@ -40,6 +39,12 @@ const useStyles = makeStyles({
     },
     buttonSpace: {
         marginRight: '10px'
+    },
+    hide: {
+        display: 'none'
+    },
+    display: {
+        
     }
 })
 
@@ -50,11 +55,15 @@ function RowItemContrib({ card, contrib, setEditCard, setEditContrib}) {
     const history = useHistory()
     const dispatch = useDispatch()
     const [imgUrl, setImgUrl] = useState('')
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(()=> {
         fetch(`/templates/${card.template_id}`)
         .then(res => res.json())
-        .then(temp => setImgUrl(temp.art_url))
+        .then(temp => {
+            setImgUrl(temp.art_url)
+            setIsLoading(false)
+        })
 
     }, [])
 
@@ -73,8 +82,8 @@ function RowItemContrib({ card, contrib, setEditCard, setEditContrib}) {
     }
 
 
-    return (
-        <TableRow>
+return (
+        <TableRow className={isLoading ? classes.hide : classes.display}>
             <TableCell><img className={classes.prevImage} src={imgUrl} /></TableCell>
             <TableCell className={classes.text}>{card.is_sent ? "sent" : "not sent"}</TableCell>
             <TableCell className={classes.text}>{dateCreated}</TableCell>
@@ -83,11 +92,11 @@ function RowItemContrib({ card, contrib, setEditCard, setEditContrib}) {
             <TableCell>
                 { !card.is_sent ? 
                     <>
-                    <span title="edit card"> 
+                    <Tooltip title="edit card"> 
                     <IconButton className={classes.buttonSpace} onClick={handleEditClick}>
                         <EditIcon fontSize="small" style={{ color: grey[800] }}/>
                     </IconButton>
-                    </span>
+                    </Tooltip>
                     </>
                     :
                     null

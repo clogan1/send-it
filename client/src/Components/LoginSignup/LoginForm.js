@@ -58,10 +58,8 @@ function LoginForm( { setOpenModal } ) {
 
     const dispatch = useDispatch()
     const storeUser = useSelector((state) => state.user.user);
-    // console.log('from store/login:',storeUser )
 
     function handleSubmit (e) {
-        // setErrors([])
         e.preventDefault();
 
         const userLogin = {
@@ -78,7 +76,6 @@ function LoginForm( { setOpenModal } ) {
         }).then(res => {
             if(res.ok){
                 res.json().then(user => {
-                    // setUser(user)
                     dispatch(logInUser(user))
                     setOpenModal(false)
                 })

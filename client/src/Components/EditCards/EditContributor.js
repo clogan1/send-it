@@ -125,17 +125,11 @@ const useStyles = makeStyles({
 function EditContributor( { editCard, editContrib }) {
     const classes = useStyles()
     const [myMessage, setMyMessage] = useState('')
-    // const [scheduleSend, setScheduleSend] = useState()
     const [card, setCard] = useState('')
     const [errors, setErrors] = useState([])
-    // const [contributors, setContributors] = useState([])
     const history = useHistory()
     const dispatch = useDispatch()
 
-
-
-    // console.log("card: ", card)
-    // console.log("contrib: ", editContrib)
 
     if(!editCard){
         history.push('/')
@@ -170,8 +164,6 @@ function EditContributor( { editCard, editContrib }) {
             }).then(res => {
                 if(res.ok){
                     res.json().then(contrib => {
-                        // console.log(contrib)
-                        // change state
                         dispatch(editMyContributors(contrib))
                         history.push('/mycards')
                     })

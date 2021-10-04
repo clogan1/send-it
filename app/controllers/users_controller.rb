@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
     # skip_before_action :authorize, only: :create
     before_action :authorize, except: :create
-    # delete before publishing
-    
-    def index
-        render json: User.all
-    end
+   
+    # only for QA purposes
+    # def index
+    #     render json: User.all
+    # end
     
     # /signup 
     def create

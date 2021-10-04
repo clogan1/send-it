@@ -22,10 +22,6 @@ function App() {
   const [editContrib, setEditContrib] = useState('')
   const [categories, setCategories] = useState([])
   const [openModal, setOpenModal] = useState(false);
-  // const [user, setUser] = useState(null)
-  // const [cards, setCards] = useState([])
-  // const [myContributions, setMyContributions]= useState([])
-  // const [myCards, setMyCards]= useState([])
 
   const storeUser = useSelector((state) => state.user.user);
 
@@ -40,60 +36,7 @@ function App() {
     .then(res => res.json())
     .then(cats => setCategories(cats))
 }, [])
-  
-  // console.log("from store:", storeUser)
 
-  // replaced by Redux
-  // useEffect(() => {
-  //   fetch('/templates')
-  //   .then(res => res.json())
-  //   .then(temps => setCards(temps))
-  // }, [])
-
-  // replaced by Redux
-  // useEffect(() => {
-  //   fetch('/me')
-  //   .then(res => {
-  //     if(res.ok){
-  //       res.json().then(user => setUser(user))
-  //     }
-  //   })
-  // }, [])
-
-  // function signoutUser(){
-  //   fetch('/logout', {
-  //     method: 'DELETE'
-  //   }).then((r) => {
-  //     if(r.ok){
-  //       // setUser(null)
-  //       dispatch(logOutUser())
-  //     }})
-  // }
-
-  // useEffect(() => {
-  //   if(storeUser){
-  //     fetch(`/users/${storeUser.id}/user_cards`)
-  //     .then(res => res.json())
-  //     .then(cards => console.log("from user card fetch:", cards))
-  //   }
-  // }, [] )
-
-  // artist add card to the cards array
-  // function addNewTemplate(template){
-
-  // }
-
- 
-
-//   function handleMyCardDelete(id){
-//     const newMyCards = myCards.filter(card => card.id !== id)
-//     setMyCards(newMyCards)
-// }
-
-// function handleAddMyCard(card){
-//   setMyCards([card, ...myCards])
-
-// }
 
   return (
     <ThemeProvider theme={theme}>

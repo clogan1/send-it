@@ -10,7 +10,8 @@ import {
     Backdrop,
     Fade
 } from '@material-ui/core';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateUser } from '../../Redux/Actions/index'
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import { grey } from '@material-ui/core/colors';
@@ -21,7 +22,7 @@ import CloseIcon from '@material-ui/icons/Close';
 const useStyles = makeStyles({
     container: {
         backgroundColor: "#F3F2F2",
-        height: '100vh',
+        // height: '100vh',
         flexGrow: 1,
         justifyContent: 'center',
         // textAlign: 'center',
@@ -127,6 +128,7 @@ function ProfilePage( {  }) {
     const [errors, setErrors] = useState([])
     const [openModal, setOpenModal] = useState(false)
     const history = useHistory()
+    const dispatch = useDispatch()
 
     const user = useSelector((state) => state.user.user);
 
@@ -172,9 +174,11 @@ function ProfilePage( {  }) {
                     setOpenModal(false)
                     toggleEditUsername(false)
                     toggleEditEmail(false)
+                    dispatch(updateUser(updateduser))
                     setUsername(updateduser.username)
                     setEmail(updateduser.email)
                     setAvatar(updateduser.avatar_url)
+                    setErrors([])
                 })
             }
             else {
@@ -190,12 +194,12 @@ function ProfilePage( {  }) {
             <Typography className={classes.header}><strong>my profile</strong></Typography>
             <Grid container spacing={3} className={classes.gridContainer}>
                 <Grid item xs={3}>
-                    <img src={avatar ? avatar : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'} alt={user.username} className={classes.image} onClick={handleOpenModal}/>
+                    <img src={avatar ? user.avatar_url : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'} alt={user.username} className={classes.image} onClick={handleOpenModal}/>
                 </Grid>
                 <Grid item xs={9}>
                     { !editUsername ? 
                         <>
-                        <p>{username} </p>
+                        <p>{user.username} </p>
                         <IconButton onClick={() => toggleEditUsername(true)}>
                             <EditIcon fontSize="small" style={{ color: grey[800] }}/>
                         </IconButton>
@@ -214,7 +218,7 @@ function ProfilePage( {  }) {
 
                     { !editEmail ? 
                         <>
-                        <p>{email} </p>
+                        <p>{user.email} </p>
                         <IconButton onClick={() => toggleEditEmail(true)}>
                             <EditIcon fontSize="small" style={{ color: grey[800] }}/>
                         </IconButton>

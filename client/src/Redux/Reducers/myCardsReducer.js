@@ -40,6 +40,20 @@ const initialMyCards = {
             }
       }
 
+      case "ADD_CONTRIBUTOR_TO_CARD": {
+        const newMyCards = state.myCards.map(card => {
+          if(card.id === action.payload.user_card_id){
+            return {...card, contributors: [...card.contributors, action.payload]}
+          }
+          else return card
+        })
+      return {
+          ...state,
+          myCards: newMyCards
+          }
+
+      }
+
       case "DELETE_CARD": {
         const newMyCards = state.myCards.filter(card => card.id !== action.payload.id)
       return {

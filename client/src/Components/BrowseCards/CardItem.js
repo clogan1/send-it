@@ -1,7 +1,5 @@
 import { useHistory } from 'react-router-dom'
 import {
-    Box,
-    Typography,
     makeStyles,
     Grid,
     Card
@@ -20,7 +18,6 @@ const useStyles = makeStyles({
    },
    image: {
        width: '200px',
-    //    border: '1px solid black',
         boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
         padding: '5px',
        transition: 'transform .3s ease',
@@ -54,8 +51,6 @@ function CardItem({ card, setEditTemplate, setOpenModal }) {
     const user = useSelector((state) => state.user.user);
 
 
-    // console.log(card)
-
     function handleCreateCard(){
         if(!user){
             setOpenModal(true)
@@ -68,7 +63,7 @@ function CardItem({ card, setEditTemplate, setOpenModal }) {
     }
 
     return (
-        <Grid item xs={4} className={classes.gridBox}>
+        <Grid item className={classes.gridBox}>
         <Card className={classes.cardContainer} elevation={3}>
             <img src={card.art_url} className={classes.image}/>
             <button className={classes.button} onClick={handleCreateCard}>use this cover</button>

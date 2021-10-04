@@ -19,8 +19,7 @@ const useStyles = makeStyles({
         flexGrow: 1,
     },
     filterContainer: {
-        // backgroundColor: 'pink',
-        height: '100vh',
+        minWidth: '220px'
 
     },
     filterText: {
@@ -37,14 +36,6 @@ const useStyles = makeStyles({
         height: '100%',
         
     },
-    // paginationButtons: {
-    //     width: '80%',
-    //     height: '40px',
-    //     listStyle: 'none',
-    //     display: 'flex',
-    //     justifyContent: 'center',
-        
-    // },
     buttonDetail: {
         borderRadius: '12px',
         padding: '10px',
@@ -59,9 +50,6 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
     const [filter, setFilter] = useState([])
     const [sort, setSort] = useState('newest')
     const [pageNumber, setPageNumber] = useState(0)
-    // const [arrLength, setArrLength] = useState(0)
-    // const [pageCount, setPageCount] = useState(0)
-    //const [displayCardLength, setDisplayCardLength]= useState(12)
 
     const templates = useSelector((state) => state.templates.templates);
     const dispatch = useDispatch()
@@ -70,29 +58,9 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
     const cardsVisted = pageNumber * cardsPerPage
     const pageCount = Math.ceil(templates.length / cardsPerPage)
 
-
-    // function pageCounter() {
-    //     if(displayCards) {
-    //         return Math.ceil(displayCards.length / cardsPerPage)
-    //     }
-    //     else return Math.ceil(templates.length / cardsPerPage)
-    // }
-  
     useEffect(() => {
       dispatch(getTemplates())
-    //   setDisplayCardLength(templates.length)
-    //   setArrLength(templates.length)
-  
     }, [])
-
-
-    // useEffect(() => {
-    //     // setPageNumber(0)
-    //     let newPc = Math.ceil(displayCards.length / cardsPerPage)
-    //     setPageCount(newPc)
-    //   }, [sort, filter])
-  
-    // console.log("from store", templates)
 
     const displayCards = templates.filter(card => {
         if(filter.length < 1){
@@ -114,13 +82,6 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
         }
     }).slice(cardsVisted, cardsVisted + cardsPerPage)
 
-    // useEffect(() => {
-    //     if(displayCards) {
-    //         setDisplayCardLength(displayCards.length)
-    //         const newLen = Math.ceil(displayCardLength / cardsPerPage)
-    //         setPageCount(newLen)
-    //     }
-    // }, [filter, sort] )
     
     function changePage({ selected }){
         setPageNumber(selected)
@@ -135,7 +96,7 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
                         <Filter filter={filter} setFilter={setFilter} categories={categories} setPageNumber={setPageNumber}
                         />
                     <Typography className={classes.filterText} >sort by</Typography>
-                        <Sort setSort={setSort} setPageNumber={setPageNumber}
+                        <Sort setSort={setSort} 
                         />
                     </Box>
                 </Grid>

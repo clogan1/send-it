@@ -128,14 +128,12 @@ function EditCardPage( { editCard }) {
     const [recipientName, setRecipientName]= useState('')
     const [recipientEmail, setRecipientEmail] = useState('')
     const [message, setMessage] = useState('')
-    // const [scheduleSend, setScheduleSend] = useState()
     const [errors, setErrors] = useState([])
     const[openContributorModal, setOpenContributorModal] = useState(false)
     const [contributors, setContributors] = useState([])
     const history = useHistory()
     const dispatch = useDispatch()
 
-    // console.log(editCard)
 
     if(!editCard){
         history.push('/')
@@ -147,9 +145,6 @@ function EditCardPage( { editCard }) {
         setRecipientEmail(editCard.recipient_email)
         setMessage(editCard.message)
         setContributors(editCard.contributors)
-        // let formattedDate = editCard.schedule_send.split('T').join('').split('.').shift().slice(0,-3)
-        // console.log(formattedDate)
-        // setScheduleSend(editCard.schedule_send)
     }, [])
 
     function handleCancel(){
@@ -173,7 +168,6 @@ function EditCardPage( { editCard }) {
             recipient_name: recipientName,
             recipient_email: recipientEmail,
             message: message
-            // schedule_send: scheduleSend
         }
 
         fetch(`/user_cards/${editCard.id}`, {
@@ -262,16 +256,6 @@ function EditCardPage( { editCard }) {
                                     null
                                 }
                             </ul>
-            
-                            {/* <Typography className={classes.labels}>schedule send:</Typography>
-                                <input 
-                                type="datetime-local"
-                                id="scheduleSend"
-                                value={scheduleSend}
-                                onChange={(e) => setScheduleSend(e.target.value)}
-                                className={classes.formItems}
-                                />
-                            <br></br> */}
                             <br></br>
                             <button type="submit" className={classes.button}>save changes</button>
                             <button onClick={handleContributorClick} className={classes.button}>invite others</button>

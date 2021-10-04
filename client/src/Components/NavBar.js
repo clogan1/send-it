@@ -1,6 +1,5 @@
 import FormModal from './LoginSignup/FormModal';
 import { NavLink, useLocation, useHistory } from 'react-router-dom';
-import { useState } from 'react'
 import {
     AppBar,
     Toolbar,
@@ -17,7 +16,6 @@ const useStyles = makeStyles({
         fontSize: '40px',
         color: "#56E39F",
         fontFamily: "'Source Serif Pro', serif",
-        // paddingLeft: '10px',
         fontWeight: '700',
         flexGrow: 1,
     },
@@ -29,7 +27,6 @@ const useStyles = makeStyles({
         padding: '12px 20px'
     },
     logoBox: {
-        // marginRight: '53%'
         width: '60%'
     },
     boxText: {
@@ -48,26 +45,24 @@ const useStyles = makeStyles({
         
     },
     box: {
-        // float: 'right',
         marginLeft: '10px',
-        width: '140px',
+        width: '150px',
         textAlign: 'center',
         cursor: 'pointer',
 
     },
     activeBox : {
         borderBottom: '3px solid #56E39F',
-        // float: 'right',
         marginLeft: '10px',
-        width: '140px',
+        width: '150px',
         textAlign: 'center',
         cursor: 'pointer',
     },
     profilepic: {
         width: '56px',
         borderRadius: '50px',
-        backgroundColor: 'white',
-        border: 'solid 1px black',
+        backgroundColor: '#CCCCCC',
+        // border: 'solid 1px gray',
         cursor: 'pointer',
     },
     profileBox: {
@@ -83,14 +78,12 @@ function NavBar( { openModal, setOpenModal } ) {
 
     const dispatch = useDispatch()
     const userObj = useSelector((state) => state.user.user);
-    // console.log("from nav:", userObj)
 
     function signoutUser(){
         fetch('/logout', {
           method: 'DELETE'
         }).then((r) => {
           if(r.ok){
-            // setUser(null)
             dispatch(logOutUser())
             history.push('/')
           }})

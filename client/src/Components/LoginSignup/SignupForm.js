@@ -85,7 +85,6 @@ function SignupForm( { setOpenModal } ) {
         }).then(res => {
             if(res.ok){
                 res.json().then(user => {
-                    // setUser(user)
                     dispatch(signUpUser(user))
                     setOpenModal(false)
                 })

@@ -7,12 +7,4 @@ class Contributor < ApplicationRecord
     validates :email, uniqueness: { scope: :user_card, message: "has already been added as a contributor." }
     validates :user, presence: true
 
-    # def user_exists
-    #     user = User.find_by(email: "#{self.email}")
-
-    #     if user == nil
-    #         errors.add(:email, 'There are no users with that email address.')
-    #     end
-        
-    # end
 end
