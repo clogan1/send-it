@@ -60,13 +60,13 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
     const [sort, setSort] = useState('newest')
     const [pageNumber, setPageNumber] = useState(0)
     // const [arrLength, setArrLength] = useState(0)
-    //const [pageCount, setPageCount] = useState(0)
+    // const [pageCount, setPageCount] = useState(0)
     //const [displayCardLength, setDisplayCardLength]= useState(12)
 
     const templates = useSelector((state) => state.templates.templates);
     const dispatch = useDispatch()
 
-    const cardsPerPage = 9
+    const cardsPerPage = 20
     const cardsVisted = pageNumber * cardsPerPage
     const pageCount = Math.ceil(templates.length / cardsPerPage)
 
@@ -82,14 +82,14 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
       dispatch(getTemplates())
     //   setDisplayCardLength(templates.length)
     //   setArrLength(templates.length)
-    //   const pc = Math.ceil(displayCardLength / cardsPerPage)
-    //   setPageCount(pc)
+  
     }, [])
 
 
     // useEffect(() => {
-    //     setPageNumber(0)
-    //     // setPageCount(displayCards.length)
+    //     // setPageNumber(0)
+    //     let newPc = Math.ceil(displayCards.length / cardsPerPage)
+    //     setPageCount(newPc)
     //   }, [sort, filter])
   
     // console.log("from store", templates)
@@ -132,9 +132,11 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
                 <Grid item xs={2} className={classes.filterContainer}>
                     <Box className={classes.filterBox}>
                     <Typography className={classes.filterText}>filter by</Typography>
-                        <Filter filter={filter} setFilter={setFilter} categories={categories} setPageNumber={setPageNumber}/>
+                        <Filter filter={filter} setFilter={setFilter} categories={categories} setPageNumber={setPageNumber}
+                        />
                     <Typography className={classes.filterText} >sort by</Typography>
-                        <Sort setSort={setSort}/>
+                        <Sort setSort={setSort} setPageNumber={setPageNumber}
+                        />
                     </Box>
                 </Grid>
                 <Grid item xs={10} className={classes.cardContainer}>

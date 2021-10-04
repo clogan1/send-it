@@ -7,6 +7,7 @@ import BrowseCardsPage from './BrowseCards/BrowseCardsPage';
 import CreateCardPage from './CreateCards/CreateCardPage';
 import MyCardsPage from './MyCards/MyCardsPage'
 import NavBar from './NavBar'
+import Footer from './Footer'
 import ProfilePage from './Profile/ProfilePage';
 import EditCardPage from './EditCards/EditCardPage';
 import EditContributor from './EditCards/EditContributor'
@@ -128,6 +129,8 @@ function App() {
               setOpenModal={setOpenModal}/>
           </Route>
       </Switch>
+      <Footer />
+      
      
     </ThemeProvider>
   );

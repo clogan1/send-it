@@ -16,11 +16,12 @@ import {
     }
  })
 
-function Sort( { setSort }) {
+function Sort( { setSort, setPageNumber }) {
     const classes = useStyles()
 
     function handleSort(e){
         setSort(e.target.value);
+        // setPageNumber(0)
     }
 
     return (

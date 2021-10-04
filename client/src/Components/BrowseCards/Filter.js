@@ -17,7 +17,7 @@ import {
     }
  })
 
-function Filter( { filter, setFilter, categories, setPageNumber }) {
+function Filter( { filter, setFilter, categories, setPageNumber}) {
     const classes = useStyles()
     // const [categories, setCategories] = useState([])
 
@@ -33,6 +33,7 @@ function Filter( { filter, setFilter, categories, setPageNumber }) {
         if(e.target.checked) {
             setFilter([...filter, e.target.name])
             setPageNumber(0)
+
         } else {
             const newFilter = filter.filter(each => each !== e.target.name)
             setFilter(newFilter)
