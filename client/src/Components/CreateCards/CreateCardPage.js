@@ -156,7 +156,7 @@ function CreateCardPage( { editTemplate }) {
                 <Box className={classes.box}>
                 <Typography className={classes.header}>preview</Typography>
                 <Grid item xs={12} className={classes.prevBox}>
-                    <img src={editTemplate.art_url} className={classes.image}/>
+                    <img src={editTemplate.art_url} className={classes.image} alt={editTemplate.name}/>
                     <Box className={classes.card}>
                         {message}
                     </Box>

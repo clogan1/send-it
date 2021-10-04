@@ -5,7 +5,7 @@ import {
     Typography,
     Box
  } from '@material-ui/core';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logInUser } from '../../Redux/Actions/index'
 
  const useStyles = makeStyles({
@@ -57,7 +57,6 @@ function LoginForm( { setOpenModal } ) {
     const [errors, setErrors] = useState([])
 
     const dispatch = useDispatch()
-    const storeUser = useSelector((state) => state.user.user);
 
     function handleSubmit (e) {
         e.preventDefault();

@@ -51,3 +51,7 @@ end
 gem "active_model_serializers", "~> 0.10.12"
 
 gem "mail", "~> 2.7"
+
+gem "wicked_pdf", "~> 2.1"
+
+gem "wkhtmltopdf-binary", "~> 0.12.6"

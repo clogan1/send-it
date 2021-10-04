@@ -12,7 +12,7 @@ import ProfilePage from './Profile/ProfilePage';
 import EditCardPage from './EditCards/EditCardPage';
 import EditContributor from './EditCards/EditContributor'
 import CreateTemplatePage from './CreateTemplate/CreateTemplatePage'
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getLoggedInUser } from '../Redux/Actions/index'
 
 
@@ -22,8 +22,6 @@ function App() {
   const [editContrib, setEditContrib] = useState('')
   const [categories, setCategories] = useState([])
   const [openModal, setOpenModal] = useState(false);
-
-  const storeUser = useSelector((state) => state.user.user);
 
   const dispatch = useDispatch()
 

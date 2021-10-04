@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { 
     makeStyles,
     Modal,
-    Box,
     Typography,
     Backdrop,
     Fade,

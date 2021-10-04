@@ -84,7 +84,7 @@ function RowItemContrib({ card, contrib, setEditCard, setEditContrib}) {
 
 return (
         <TableRow className={isLoading ? classes.hide : classes.display}>
-            <TableCell><img className={classes.prevImage} src={imgUrl} /></TableCell>
+            <TableCell><img className={classes.prevImage} src={imgUrl} alt="card cover"/></TableCell>
             <TableCell className={classes.text}>{card.is_sent ? "sent" : "not sent"}</TableCell>
             <TableCell className={classes.text}>{dateCreated}</TableCell>
             <TableCell className={classes.text}>{sendDate}</TableCell>

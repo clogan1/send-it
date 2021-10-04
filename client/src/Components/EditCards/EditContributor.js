@@ -182,7 +182,7 @@ function EditContributor( { editCard, editContrib }) {
                 <Box className={classes.box}>
                 <Typography className={classes.header}>preview</Typography>
                 <Grid item xs={12} className={classes.prevBox}>
-                    { card ? <img src={card.template.art_url} className={classes.image}/> : null }
+                    { card ? <img src={card.template.art_url} className={classes.image} alt={card.name}/> : null }
                     <Box className={classes.card}>
                         <Typography className={classes.smallHeader}>message:</Typography>
                         {card.message}

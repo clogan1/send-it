@@ -65,7 +65,7 @@ function CardItem({ card, setEditTemplate, setOpenModal }) {
     return (
         <Grid item className={classes.gridBox}>
         <Card className={classes.cardContainer} elevation={3}>
-            <img src={card.art_url} className={classes.image}/>
+            <img src={card.art_url} className={classes.image} alt={card.name}/>
             <button className={classes.button} onClick={handleCreateCard}>use this cover</button>
         </Card>
         </Grid>

@@ -79,7 +79,7 @@ const useStyles = makeStyles({
     })
 
 
-function ProfilePage( {  }) {
+function ProfilePage() {
     const classes = useStyles()
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')

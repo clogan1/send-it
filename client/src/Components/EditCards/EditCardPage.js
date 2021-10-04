@@ -198,7 +198,7 @@ function EditCardPage( { editCard }) {
                 <Box className={classes.box}>
                 <Typography className={classes.header}>preview</Typography>
                 <Grid item xs={12} className={classes.prevBox}>
-                    { editCard ? <img src={editCard.template.art_url} className={classes.image}/> : null }
+                    { editCard ? <img src={editCard.template.art_url} className={classes.image} alt={editCard.name}/> : null }
                     <Box className={classes.card}>
                         <Typography className={classes.smallHeader}>my message:</Typography>
                         {message}
