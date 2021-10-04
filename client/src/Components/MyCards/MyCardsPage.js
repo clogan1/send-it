@@ -33,6 +33,9 @@ const useStyles = makeStyles({
             float: 'left',
             cursor: 'pointer',
             "&:hover": {fontWeight: '600'},
+            ['@media (max-width:780px)']: {
+                fontSize: '20px',
+            }
             // overflow: 'visible',
             // position: 'sticky',
             // top: '0px',
@@ -45,6 +48,9 @@ const useStyles = makeStyles({
             marginRight: '50px',
             float: 'left',
             cursor: 'pointer',
+            ['@media (max-width:780px)']: {
+                fontSize: '20px',
+            }
             // overflow: 'visible',
             // position: 'sticky',
             // top: '0px',

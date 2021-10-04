@@ -18,7 +18,10 @@ const useStyles = makeStyles({
         header: {
             fontSize: '24px',
             fontWeight: '500',
-            marginBottom: '10px'
+            marginBottom: '10px',
+            ['@media (max-width:780px)']: {
+                fontSize: '20px',
+            }
         },
         headerText: {
             color: 'black',

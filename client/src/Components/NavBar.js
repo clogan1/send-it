@@ -18,6 +18,9 @@ const useStyles = makeStyles({
         fontFamily: "'Source Serif Pro', serif",
         fontWeight: '700',
         flexGrow: 1,
+        ['@media (max-width:780px)']: {
+            fontSize: '18px'
+        }
     },
     bar: {
         backgroundColor: 'white',
@@ -34,7 +37,11 @@ const useStyles = makeStyles({
         textDecoration: 'none',
         color: 'black',
         "&:hover": {fontWeight: '600'},
-        textAlign: 'center'
+        textAlign: 'center',
+        ['@media (max-width:780px)']: {
+            fontSize: '12px',
+            lineHeight: '60%'
+        }
     },
     activeText: {
         fontSize: '20px',
@@ -42,6 +49,10 @@ const useStyles = makeStyles({
         color: 'black',
         textAlign: 'center',
         fontWeight: '600',
+        ['@media (max-width:780px)']: {
+            fontSize: '12px',
+            lineHeight: '60%'
+        }
         
     },
     box: {
@@ -66,7 +77,10 @@ const useStyles = makeStyles({
         cursor: 'pointer',
     },
     profileBox: {
-        marginRight: '10px'
+        marginRight: '10px',
+        ['@media (max-width:780px)']: {
+            marginRight: '1px',
+        }
     }
 })
 
