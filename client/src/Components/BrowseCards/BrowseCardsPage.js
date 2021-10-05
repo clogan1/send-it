@@ -20,7 +20,7 @@ const useStyles = makeStyles({
         flexGrow: 1,
     },
     filterContainer: {
-        minWidth: '220px'
+        minWidth: '230px'
 
     },
     filterText: {
@@ -43,7 +43,25 @@ const useStyles = makeStyles({
         margin: '8px',
         cursor: 'pointer',
         "&:hover": {fontWeight: 'bold'}
-        }
+        },
+    collapseFilter: {
+        display: 'none',
+        '@media (max-width:780px)': {
+            display: 'block',
+            backgroundColor: '#56E39F',
+            textAlign: 'center',
+            padding: '4px',
+            color: 'white',
+            marginBottom: '20px'
+        },
+    },
+    filterContainerHide: {
+        minWidth: '230px',
+        display: 'none'
+    },
+    toggleText: {
+        fontSize: '18px'
+    }
 })
 
 function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
@@ -51,6 +69,7 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
     const [filter, setFilter] = useState([])
     const [sort, setSort] = useState('newest')
     const [pageNumber, setPageNumber] = useState(0)
+    const [showFilter, setShowFilter] = useState(false)
 
     const templates = useSelector((state) => state.templates.templates);
     const dispatch = useDispatch()
@@ -88,11 +107,18 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
         setPageNumber(selected)
     }
 
+    function toggleFilters(){
+        setShowFilter(!showFilter)
+    }
+
     return (
         <FadeIn>
         <Box className={classes.container}>
+            <Box className={classes.collapseFilter}>
+                <Typography className={classes.toggleText} onClick={toggleFilters}>{showFilter ? "- Hide" : "+ Show"} Filters</Typography>
+            </Box>
             <Grid container spacing={3}>
-                <Grid item xs={2} className={classes.filterContainer}>
+                <Grid item xs={2} className={showFilter? classes.filterContainer : classes.filterContainerHide}>
                     <Box className={classes.filterBox}>
                     <Typography className={classes.filterText}>filter by</Typography>
                         <Filter filter={filter} setFilter={setFilter} categories={categories} setPageNumber={setPageNumber}
