@@ -45,6 +45,13 @@ const useStyles = makeStyles({
     },
     display: {
         
+    },
+    mobileHide: {
+        '@media (max-width:780px)': {
+            display: 'none'
+        },
+        fontWeight: '500',
+        fontSize: '12px'
     }
 })
 
@@ -86,8 +93,8 @@ return (
         <TableRow className={isLoading ? classes.hide : classes.display}>
             <TableCell><img className={classes.prevImage} src={imgUrl} alt="card cover"/></TableCell>
             <TableCell className={classes.text}>{card.is_sent ? "sent" : "not sent"}</TableCell>
-            <TableCell className={classes.text}>{dateCreated}</TableCell>
-            <TableCell className={classes.text}>{sendDate}</TableCell>
+            <TableCell className={classes.mobileHide}>{dateCreated}</TableCell>
+            <TableCell className={classes.mobileHide}>{sendDate}</TableCell>
             <TableCell className={classes.text}>{card.recipient_name}</TableCell>
             <TableCell>
                 { !card.is_sent ? 

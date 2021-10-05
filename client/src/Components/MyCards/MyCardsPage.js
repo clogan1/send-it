@@ -33,7 +33,7 @@ const useStyles = makeStyles({
             float: 'left',
             cursor: 'pointer',
             "&:hover": {fontWeight: '600'},
-            ['@media (max-width:780px)']: {
+            '@media (max-width:780px)': {
                 fontSize: '20px',
             }
             // overflow: 'visible',
@@ -48,7 +48,7 @@ const useStyles = makeStyles({
             marginRight: '50px',
             float: 'left',
             cursor: 'pointer',
-            ['@media (max-width:780px)']: {
+            '@media (max-width:780px)': {
                 fontSize: '20px',
             }
             // overflow: 'visible',
@@ -73,6 +73,14 @@ const useStyles = makeStyles({
         },
         overflow: {
             overflow: 'visible'
+        },
+        mobileHide: {
+            '@media (max-width:780px)': {
+                display: 'none'
+            },
+            color: 'black',
+            fontWeight: '600',
+            fontSize: '14px',
         }
     })
 
@@ -126,8 +134,8 @@ function MyCardsPage( { setEditCard, handleMyCardDelete, setEditContrib}) {
                         <TableRow >
                             <TableCell className={classes.headerText} >preview</TableCell>
                             <TableCell className={classes.headerText} >status</TableCell>
-                            <TableCell className={classes.headerText} >date created</TableCell>
-                            <TableCell className={classes.headerText} >date sent</TableCell>
+                            <TableCell className={classes.mobileHide} >date created</TableCell>
+                            <TableCell className={classes.mobileHide} >date sent</TableCell>
                             <TableCell className={classes.headerText} >recipient</TableCell>
                             <TableCell className={classes.headerText} >actions</TableCell>
                         </TableRow>

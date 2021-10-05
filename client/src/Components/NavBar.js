@@ -18,7 +18,7 @@ const useStyles = makeStyles({
         fontFamily: "'Source Serif Pro', serif",
         fontWeight: '700',
         flexGrow: 1,
-        ['@media (max-width:780px)']: {
+        '@media (max-width:780px)': {
             fontSize: '18px'
         }
     },
@@ -38,7 +38,7 @@ const useStyles = makeStyles({
         color: 'black',
         "&:hover": {fontWeight: '600'},
         textAlign: 'center',
-        ['@media (max-width:780px)']: {
+        '@media (max-width:780px)': {
             fontSize: '12px',
             lineHeight: '60%'
         }
@@ -49,7 +49,7 @@ const useStyles = makeStyles({
         color: 'black',
         textAlign: 'center',
         fontWeight: '600',
-        ['@media (max-width:780px)']: {
+        '@media (max-width:780px)': {
             fontSize: '12px',
             lineHeight: '60%'
         }
@@ -78,7 +78,7 @@ const useStyles = makeStyles({
     },
     profileBox: {
         marginRight: '10px',
-        ['@media (max-width:780px)']: {
+        '@media (max-width:780px)': {
             marginRight: '1px',
         }
     }

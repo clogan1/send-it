@@ -23,7 +23,7 @@ const useStyles = makeStyles({
             fontSize: '24px',
             fontWeight: '500',
             marginBottom: '20px', 
-            ['@media (max-width:780px)']: {
+            '@media (max-width:780px)': {
                 fontSize: '20px',
             }       
     },

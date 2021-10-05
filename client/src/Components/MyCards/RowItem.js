@@ -43,6 +43,13 @@ const useStyles = makeStyles({
     },
     buttonSpace: {
         marginRight: '10px'
+    },
+    mobileHide: {
+        '@media (max-width:780px)': {
+            display: 'none'
+        },
+        fontWeight: '500',
+        fontSize: '12px'
     }
 })
 
@@ -108,8 +115,8 @@ function RowItem({ card, setEditCard }) {
         <TableRow>
             <TableCell><img className={classes.prevImage} src={card.template.art_url} alt={card.id}/></TableCell>
             <TableCell className={classes.text}>{card.is_sent ? "sent" : "not sent"}</TableCell>
-            <TableCell className={classes.text}>{dateCreated}</TableCell>
-            <TableCell className={classes.text}>{sendDate}</TableCell>
+            <TableCell className={classes.mobileHide}>{dateCreated}</TableCell>
+            <TableCell className={classes.mobileHide}>{sendDate}</TableCell>
             <TableCell className={classes.text}>{card.recipient_name}</TableCell>
             <TableCell>
                 { !card.is_sent ? 

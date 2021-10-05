@@ -4,9 +4,23 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <div>
-    <h4> <%= @user.username %>, you have been invited to sign a card on Send It. </h4>
-    <p>Log into your account to view the card and add your message. </p>
-    </div>
+      <table>
+      <tr>
+        <td style="width: 600px">
+          <img src="https://i.ibb.co/x8gbSz6/Send-It-600-x-60-px.png" alt="send it" style="width: 600px">
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 600px; background-color: white;">
+          <h3><%= @user.username %>, you have been invited to sign a card on Send It.</h3>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 600px; background-color: white; color: black; border: solid 1px black; padding: 20px">
+          Log into your account to view the card and add your message.
+        </td>
+      </tr>
+    </table>
+    
   </body>
 </html>

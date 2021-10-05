@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import { useDispatch } from "react-redux";
 import { editMyContributors } from '../../Redux/Actions/index'
+import MobileAlert from '../MobileAlert'
 
 const useStyles = makeStyles({
     container: {
@@ -17,8 +18,9 @@ const useStyles = makeStyles({
         flexGrow: 1,
     },
     previewContainer : {
-        height: '100vh',
+        minWidth: '300px'
     },
+
     editContainer : {
         height: '100vh',
     },
@@ -38,12 +40,14 @@ const useStyles = makeStyles({
     image: {
         width: '300px',
         float: 'left',
-        marginRight: '10px'
+        marginRight: '10px',
+        marginBottom: '20px'
+
 
     },
     card: {
         backgroundColor: 'white',
-        width: '300px',
+        width: '280px',
         justifyContent: 'center',
         padding: '10px',
         boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
@@ -57,7 +61,7 @@ const useStyles = makeStyles({
         backgroundColor: '#F3F2F2',
         borderRadius: '6px',
         borderStyle: 'none',
-        width: '500px',
+        width: '80%',
         height: '40px'
       },
       message: {
@@ -66,7 +70,7 @@ const useStyles = makeStyles({
         backgroundColor: '#F3F2F2',
         borderRadius: '6px',
         borderStyle: 'none',
-        width: '500px',
+        width: '80%',
         height: '300px'
 
       },
@@ -77,6 +81,8 @@ const useStyles = makeStyles({
         //   justifyContent: 'center,',
           boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
           borderRadius: '6px',
+          minWidth: '270px'
+
       },
       labels: {
         textAlign: 'left'
@@ -119,7 +125,6 @@ const useStyles = makeStyles({
     contribBullet: {
         fontSize: '12px'
     }
-
 })
 
 function EditContributor( { editCard, editContrib }) {
@@ -177,6 +182,7 @@ function EditContributor( { editCard, editContrib }) {
     return (
 
         <Box className={classes.container}>
+             <MobileAlert />
         <Grid container spacing={3}>
             <Grid item xs={6} className={classes.previewContainer}>
                 <Box className={classes.box}>
