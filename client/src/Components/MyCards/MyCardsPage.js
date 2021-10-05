@@ -37,9 +37,6 @@ const useStyles = makeStyles({
             '@media (max-width:780px)': {
                 fontSize: '20px',
             }
-            // overflow: 'visible',
-            // position: 'sticky',
-            // top: '0px',
 
         },
         headerActive: {
@@ -162,7 +159,6 @@ function MyCardsPage( { setEditCard, handleMyCardDelete, setEditContrib}) {
                         null
                 }
             </TableContainer>
-
 
             </Container>
         </Box>

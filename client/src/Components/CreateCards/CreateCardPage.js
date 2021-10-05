@@ -70,7 +70,9 @@ const useStyles = makeStyles({
         borderRadius: '6px',
         borderStyle: 'none',
         width: '80%',
-        height: '300px'
+        height: '300px',
+        fontFamily: '"Roboto", sans-serif',
+        padding: '5px'
 
       },
       formDiv: {

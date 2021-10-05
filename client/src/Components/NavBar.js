@@ -19,7 +19,7 @@ const useStyles = makeStyles({
         fontWeight: '700',
         flexGrow: 1,
         '@media (max-width:780px)': {
-            fontSize: '18px'
+            fontSize: '32px',
         }
     },
     bar: {
@@ -30,7 +30,33 @@ const useStyles = makeStyles({
         padding: '12px 20px'
     },
     logoBox: {
-        width: '60%'
+        width: '60%',
+        '@media (max-width:780px)': {
+            width: '100%',
+            display: 'none'
+        }
+    
+    },
+    logoBoxMobile : {
+        display: 'none%',
+        '@media (max-width:780px)': {
+            display: 'block',
+            paddingLeft: '20px',
+            paddingTop: '10px',
+            marginBottom: '-20px'
+        }
+    },
+    logoMobile: {
+        display: 'none',
+        
+        '@media (max-width:780px)': {
+            display: 'block',
+            fontSize: '32px',
+            color: "#56E39F",
+            fontFamily: "'Source Serif Pro', serif",
+            fontWeight: '700',
+            flexGrow: 1,
+        }
     },
     boxText: {
         fontSize: '20px',
@@ -39,7 +65,7 @@ const useStyles = makeStyles({
         "&:hover": {fontWeight: '600'},
         textAlign: 'center',
         '@media (max-width:780px)': {
-            fontSize: '12px',
+            fontSize: '14px',
             lineHeight: '60%'
         }
     },
@@ -50,7 +76,7 @@ const useStyles = makeStyles({
         textAlign: 'center',
         fontWeight: '600',
         '@media (max-width:780px)': {
-            fontSize: '12px',
+            fontSize: '14px',
             lineHeight: '60%'
         }
         
@@ -60,6 +86,10 @@ const useStyles = makeStyles({
         width: '150px',
         textAlign: 'center',
         cursor: 'pointer',
+        '@media (max-width:780px)': {
+            width: '170px',
+            marginLeft: '2px'
+        }
 
     },
     activeBox : {
@@ -68,6 +98,10 @@ const useStyles = makeStyles({
         width: '150px',
         textAlign: 'center',
         cursor: 'pointer',
+        '@media (max-width:780px)': {
+            width: '170px',
+            marginLeft: '2px'
+        }
     },
     profilepic: {
         width: '56px',
@@ -119,6 +153,9 @@ function NavBar( { openModal, setOpenModal } ) {
             elevation={0}
             className={classes.bar}
         >
+            <Box className={classes.logoBoxMobile}>
+                <Typography className={classes.logoMobile}>Send It</Typography>
+            </Box>
         <Toolbar className={classes.toolbarContainer}>
             <Box className={classes.logoBox}>
                 <Typography className={classes.logo}>Send It</Typography>
@@ -129,7 +166,7 @@ function NavBar( { openModal, setOpenModal } ) {
                     to="/"
                     className={location.pathname === "/" ? classes.activeText : classes.boxText}
                 >
-                    browse cards
+                    browse
                 </Typography>
             </Box>
             { userObj ? 

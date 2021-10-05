@@ -14,6 +14,9 @@ const useStyles = makeStyles({
        justifyContent: 'center',
        padding: '20px 0 20px',
        overflow: 'hidden',
+       '@media (max-width:780px)': {
+        width: '250px',
+    }
        
    },
    image: {
@@ -23,7 +26,10 @@ const useStyles = makeStyles({
        transition: 'transform .3s ease',
         "&:hover": {
             cursor: 'zoom-in',
-            transform: 'scale(1.5)'}
+            transform: 'scale(1.5)'},
+        '@media (max-width:780px)': {
+                width: '150px',
+            }
    },
    button: {
        backgroundColor: '#56E39F',
@@ -36,6 +42,9 @@ const useStyles = makeStyles({
        marginTop: '10px',
        "&:hover": {backgroundColor: '#84EBB9'},
        cursor: 'pointer',
+       '@media (max-width:780px)': {
+        width: '150px',
+    }
 
    },
    gridBox : {

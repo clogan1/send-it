@@ -11,6 +11,11 @@ const useStyles = makeStyles({
    container : {
        backgroundColor: '#F3F2F2',
        paddingTop: '20px'
+   },
+   mobileCenter: {
+    '@media (max-width:780px)': {
+        justifyContent: 'center',
+    }
    }
 })
 
@@ -23,7 +28,8 @@ function CardList({ cards, setEditTemplate, setOpenModal }) {
             <Grid container spacing={3} 
                 direction="row"
                 justifyContent="flex-start"
-                alignItems="flex-start">
+                alignItems="flex-start"
+                className={classes.mobileCenter}>
             {cards.map(card => 
                 <CardItem card={card} key={card.id} 
                 setEditTemplate={setEditTemplate}

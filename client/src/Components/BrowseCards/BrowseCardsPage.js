@@ -77,7 +77,7 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
     const templates = useSelector((state) => state.templates.templates);
     const dispatch = useDispatch()
 
-    const cardsPerPage = 20
+    const cardsPerPage = 25
     const cardsVisted = pageNumber * cardsPerPage
     const pageCount = Math.ceil(templates.length / cardsPerPage)
 

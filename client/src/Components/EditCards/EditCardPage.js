@@ -71,7 +71,9 @@ const useStyles = makeStyles({
         borderRadius: '6px',
         borderStyle: 'none',
         width: '80%',
-        height: '300px'
+        height: '300px',
+        fontFamily: '"Roboto", sans-serif',
+        padding: '5px'
 
       },
       formDiv: {
@@ -92,7 +94,6 @@ const useStyles = makeStyles({
       },
       button: {
         backgroundColor: '#56E39F',
-        fontFamily: '"Roboto", sans-serif',
         fontSize: '14px',
         width: '150px',
         borderStyle: 'none',
@@ -102,6 +103,7 @@ const useStyles = makeStyles({
         marginRight: '30px',
         "&:hover": {backgroundColor: '#84EBB9'},
         cursor: 'pointer',
+        fontFamily: '"Roboto", sans-serif'
     },
     backbutton: {
         backgroundColor: '#CCCCCC',

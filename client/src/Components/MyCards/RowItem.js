@@ -17,7 +17,6 @@ import { useDispatch } from "react-redux";
 import { deleteMyCard, editMyCard, updateContribList } from '../../Redux/Actions/index'
 import InviteContributorsModal from '../InviteContributorsModal';
 
-
 const useStyles = makeStyles({
     prevImage: {
         width: '50px',
@@ -50,6 +49,10 @@ const useStyles = makeStyles({
         },
         fontWeight: '500',
         fontSize: '12px'
+    },
+    fadeIn: {
+        opacity: '1',
+        transition: 'width 0.5s, height 0.5s, opacity 0.5s 0.5s'
     }
 })
 
@@ -112,7 +115,7 @@ function RowItem({ card, setEditCard }) {
     }
 
     return (
-        <TableRow>
+        <TableRow className={classes.fadeIn}>
             <TableCell><img className={classes.prevImage} src={card.template.art_url} alt={card.id}/></TableCell>
             <TableCell className={classes.text}>{card.is_sent ? "sent" : "not sent"}</TableCell>
             <TableCell className={classes.mobileHide}>{dateCreated}</TableCell>

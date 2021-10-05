@@ -10,10 +10,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import Tooltip from '@material-ui/core/Tooltip';
 import { grey } from '@material-ui/core/colors';
 
-import { useDispatch } from "react-redux";
-
-
-
 const useStyles = makeStyles({
     prevImage: {
         width: '50px',
@@ -41,10 +37,12 @@ const useStyles = makeStyles({
         marginRight: '10px'
     },
     hide: {
-        display: 'none'
+        display: 'none',
+        opacity: '0',
     },
     display: {
-        
+        opacity: '1',
+        transition: 'opacity 200ms'
     },
     mobileHide: {
         '@media (max-width:780px)': {
@@ -52,7 +50,7 @@ const useStyles = makeStyles({
         },
         fontWeight: '500',
         fontSize: '12px'
-    }
+    },
 })
 
 
@@ -60,7 +58,6 @@ const useStyles = makeStyles({
 function RowItemContrib({ card, contrib, setEditCard, setEditContrib}) {
     const classes = useStyles()
     const history = useHistory()
-    const dispatch = useDispatch()
     const [imgUrl, setImgUrl] = useState('')
     const [isLoading, setIsLoading] = useState(true)
 
