@@ -9,7 +9,9 @@ import {
 } from '@material-ui/core';
 import { useDispatch } from "react-redux";
 import { editMyContributors } from '../../Redux/Actions/index'
-import MobileAlert from '../MobileAlert'
+import MobileAlert from '../MobileAlert';
+import FadeIn from 'react-fade-in';
+
 
 const useStyles = makeStyles({
     container: {
@@ -180,7 +182,7 @@ function EditContributor( { editCard, editContrib }) {
     }
 
     return (
-
+        <FadeIn>
         <Box className={classes.container}>
              <MobileAlert />
         <Grid container spacing={3}>
@@ -251,6 +253,7 @@ function EditContributor( { editCard, editContrib }) {
 
         </Grid>
     </Box>
+    </FadeIn>
 
     )
 }

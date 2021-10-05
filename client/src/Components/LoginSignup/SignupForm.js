@@ -6,7 +6,8 @@ import {
     Box
  } from '@material-ui/core';
 import { useDispatch } from "react-redux";
-import { signUpUser } from '../../Redux/Actions/index'
+import { signUpUser } from '../../Redux/Actions/index';
+import FadeIn from 'react-fade-in';
 
  const useStyles = makeStyles({
     formDiv: {
@@ -102,6 +103,7 @@ function SignupForm( { setOpenModal } ) {
     }
 
     return (
+        <FadeIn transitionDuration="200">
         <Container className={classes.formDiv}>
         <form onSubmit={handleSubmit} autoComplete="off">
         <Typography className={classes.labels}>username:</Typography>
@@ -167,7 +169,7 @@ function SignupForm( { setOpenModal } ) {
             }
     </Box>
     </Container>
-       
+    </FadeIn>
     )
 }
 

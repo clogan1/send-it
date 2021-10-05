@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import { useSelector, useDispatch } from "react-redux";
 import { addTemplate } from '../../Redux/Actions/index';
+import FadeIn from 'react-fade-in';
 
 const useStyles = makeStyles({
     container: {
@@ -113,6 +114,7 @@ function CreateTemplatePage( { categories }) {
     }
 
     return (
+        <FadeIn>
         <Box className={classes.container}>
         <Container>
         <Typography className={classes.header}><strong>add card</strong></Typography>
@@ -180,6 +182,7 @@ function CreateTemplatePage( { categories }) {
 
         </Container>
     </Box>
+    </FadeIn>
     )
 }
 

@@ -3,7 +3,9 @@ import {
     makeStyles,
     Grid,
     Container
-} from '@material-ui/core'
+} from '@material-ui/core';
+import FadeIn from 'react-fade-in';
+
 
 const useStyles = makeStyles({
    container : {
@@ -16,6 +18,7 @@ function CardList({ cards, setEditTemplate, setOpenModal }) {
     const classes = useStyles()
 
     return (
+        <FadeIn>
         <Container className={classes.container}>
             <Grid container spacing={3} 
                 direction="row"
@@ -30,6 +33,7 @@ function CardList({ cards, setEditTemplate, setOpenModal }) {
             }
             </Grid>
         </Container>
+        </FadeIn>
     )
 }
 

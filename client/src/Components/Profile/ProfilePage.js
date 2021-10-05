@@ -8,8 +8,8 @@ import {
     Grid,
 } from '@material-ui/core';
 import { useSelector, useDispatch } from "react-redux";
-import { updateUser } from '../../Redux/Actions/index'
-
+import { updateUser } from '../../Redux/Actions/index';
+import FadeIn from 'react-fade-in';
 
 
 const useStyles = makeStyles({
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
         backgroundColor: "#F3F2F2",
         flexGrow: 1,
         justifyContent: 'center',
-        paddingTop: '10px'
+        paddingTop: '20px'
     },
         header: {
             fontSize: '24px',
@@ -137,6 +137,7 @@ function ProfilePage() {
 
 
     if(user) return (
+        <FadeIn>
             <Box className={classes.container}>
                 <Container >
                     <Typography className={classes.header}><strong>my profile</strong></Typography>
@@ -200,6 +201,7 @@ function ProfilePage() {
                     </Grid>
                 </Container>
             </Box>
+            </FadeIn>
     )
 }
 

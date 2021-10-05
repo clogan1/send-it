@@ -10,7 +10,8 @@ import {
 import { useDispatch } from "react-redux";
 import { editMyCard } from '../../Redux/Actions/index';
 import InviteContributorsModal from '../InviteContributorsModal'
-import MobileAlert from '../MobileAlert'
+import MobileAlert from '../MobileAlert';
+import FadeIn from 'react-fade-in';
 
 const useStyles = makeStyles({
     container: {
@@ -194,7 +195,7 @@ function EditCardPage( { editCard }) {
     }
 
     return (
-
+        <FadeIn>
         <Box className={classes.container}>
              <MobileAlert />
         <Grid container spacing={3}>
@@ -291,6 +292,7 @@ function EditCardPage( { editCard }) {
             addContrib={addContrib}
         />
     </Box>
+    </FadeIn>
 
     )
 }

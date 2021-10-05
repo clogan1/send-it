@@ -10,7 +10,8 @@ import {
     Grid,
 } from '@material-ui/core'
 import { useSelector, useDispatch } from "react-redux";
-import { getTemplates } from '../../Redux/Actions/index'
+import { getTemplates } from '../../Redux/Actions/index';
+import FadeIn from 'react-fade-in';
 
 const useStyles = makeStyles({
     container: {
@@ -88,6 +89,7 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
     }
 
     return (
+        <FadeIn>
         <Box className={classes.container}>
             <Grid container spacing={3}>
                 <Grid item xs={2} className={classes.filterContainer}>
@@ -125,6 +127,7 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
               
             </Grid>
         </Box>
+        </FadeIn>
     
     )
 }

@@ -16,6 +16,7 @@ import {
     TableRow
 } from '@material-ui/core';
 import { useSelector } from "react-redux";
+import FadeIn from 'react-fade-in';
 
 
 const useStyles = makeStyles({
@@ -115,6 +116,7 @@ function MyCardsPage( { setEditCard, handleMyCardDelete, setEditContrib}) {
     }
 
     return (
+        <FadeIn>
         <Box className={classes.container}>
             <Container className={classes.overflow}>
             <Box className={classes.sticky}>
@@ -164,6 +166,7 @@ function MyCardsPage( { setEditCard, handleMyCardDelete, setEditContrib}) {
 
             </Container>
         </Box>
+        </FadeIn>
     )
 }
 

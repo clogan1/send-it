@@ -9,8 +9,8 @@ import {
 } from '@material-ui/core'
 import { useSelector, useDispatch } from "react-redux";
 import { addMyCard } from '../../Redux/Actions/index';
-import MobileAlert from '../MobileAlert'
-
+import MobileAlert from '../MobileAlert';
+import FadeIn from 'react-fade-in';
 
 const useStyles = makeStyles({
     container: {
@@ -151,6 +151,7 @@ function CreateCardPage( { editTemplate }) {
 
     return (
 
+        <FadeIn>
         <Box className={classes.container}>
             <MobileAlert />
         <Grid container spacing={1}
@@ -223,6 +224,7 @@ function CreateCardPage( { editTemplate }) {
 
         </Grid>
     </Box>
+    </FadeIn>
 
     )
 }

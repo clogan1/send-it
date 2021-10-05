@@ -15,7 +15,7 @@ import { grey } from '@material-ui/core/colors';
 
 import { useDispatch } from "react-redux";
 import { deleteMyCard, editMyCard, updateContribList } from '../../Redux/Actions/index'
-import InviteContributorsModal from '../InviteContributorsModal'
+import InviteContributorsModal from '../InviteContributorsModal';
 
 
 const useStyles = makeStyles({
