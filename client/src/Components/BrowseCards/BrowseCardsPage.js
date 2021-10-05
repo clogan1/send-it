@@ -56,8 +56,11 @@ const useStyles = makeStyles({
         },
     },
     filterContainerHide: {
+        '@media (max-width:780px)': {
+            minWidth: '230px',
+            display: 'none'
+        },
         minWidth: '230px',
-        display: 'none'
     },
     toggleText: {
         fontSize: '18px'
