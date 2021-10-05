@@ -51,19 +51,12 @@ const useStyles = makeStyles({
             '@media (max-width:780px)': {
                 fontSize: '20px',
             }
-            // overflow: 'visible',
-            // position: 'sticky',
-            // top: '0px',
 
         },
         headerText: {
             color: 'black',
             fontWeight: '600',
             fontSize: '14px',
-            // overflow: 'visible',
-            // position: 'sticky',
-            // top: '0px',
-
         },
         sticky: {
             position: 'sticky',
