@@ -2,25 +2,45 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  <%# <style>
-  /* border: solid 1px black; */
-  div {float: left; background-color: white; text-align: center;border: solid 1px black;}
-  p {padding: 20px; font-size: 16px; }
-  img {max-width: 700px; }
-  </style> %>
+<style>
+    body {
+      font-family: 'Trebuchet MS', sans-serif;
+      }
+    /* p {
+      padding: 20px; 
+      font-size: 2vh; 
+      color: black
+    } */
+</style>
   </head>
-  <body>
-    <header>
-      <h3>To: <%= @user_card.recipient_name %></h3>
-    </header>
-    <div style="height: 100%">
-    <div style="float:left; background-color: white; text-align: center;border: solid 1px black; width: 50%; max-width: 640px; height: 750px; justify-content: center;">
-        <img src=<%=@template%>  style="max-width: 640px; margin: auto;"/>
-    </div>
-    <div style="float: left; width: 50%; background-color: white; text-align: center;border: solid 1px black; max-width: 640px; height: 750px;">
-        <p style="padding: 20px; font-size: 2vh;"><%= @user_card.message %></p>
-        <p style="padding: 20px; font-size: 2vh;"><%= @contributors %> </p>
-    </div>
-    </div>
+  <body >
+    <table>
+      <tr>
+        <td style="width: 600px">
+          <img src="https://i.ibb.co/x8gbSz6/Send-It-600-x-60-px.png" alt="send it" style="width: 600px">
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 600px; background-color: white;">
+          <h3>To: <%= @user_card.recipient_name %></h3>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 600px; background-color: white; border: solid 1px black;">
+          <img src=<%=@template%>  style="margin: auto; width: 600px"/>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 600px; background-color: white; color: black; border: solid 1px black; padding: 20px">
+          <%= @user_card.message %>
+          <br>
+          <%= @contributors %>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>
+
+
+
+
