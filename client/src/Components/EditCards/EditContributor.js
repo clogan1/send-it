@@ -73,7 +73,9 @@ const useStyles = makeStyles({
         borderRadius: '6px',
         borderStyle: 'none',
         width: '80%',
-        height: '300px'
+        height: '300px',
+        fontFamily: '"Roboto", sans-serif',
+
 
       },
       formDiv: {
@@ -126,6 +128,11 @@ const useStyles = makeStyles({
     },
     contribBullet: {
         fontSize: '12px'
+    },
+    helper: {
+        fontSize: '12px',
+        fontStyle: 'italic',
+        color: "#A3A3A3"
     }
 })
 
@@ -221,6 +228,7 @@ function EditContributor( { editCard, editContrib }) {
                 <Box className={classes.formDiv}>
                     <form autoComplete="off" onSubmit={handleSubmit} >
                             <Typography className={classes.labels}>message:</Typography>
+                            <Typography className={classes.helper}>top tip: include your name at the end of your message</Typography>
                                 <textarea 
                                 type="text"
                                 id="mymessage"

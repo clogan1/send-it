@@ -19,7 +19,6 @@ const useStyles = makeStyles({
         flexGrow: 1,
     },
     previewContainer : {
-        // height: '100vh',
         minWidth: '300px'
     },
     editContainer : {
@@ -27,7 +26,6 @@ const useStyles = makeStyles({
     },
     box: {
         padding: '30px 60px',
-        // backgroundColor: 'pink'
 
     },
     header: {
@@ -36,7 +34,6 @@ const useStyles = makeStyles({
         marginBottom: '10px'
     },
     prevBox: {
-        // backgroundColor: 'blue',
     },
     image: {
         width: '300px',
@@ -101,6 +98,11 @@ const useStyles = makeStyles({
         marginTop: '10px',
         cursor: 'pointer',
         "&:hover": {backgroundColor: '#84EBB9'}
+    },
+    helper: {
+        fontSize: '12px',
+        fontStyle: 'italic',
+        color: "#A3A3A3"
     }
 })
 
@@ -195,6 +197,7 @@ function CreateCardPage( { editTemplate }) {
                                 />
                             <br></br>
                             <Typography className={classes.labels}>message:</Typography>
+                            <Typography className={classes.helper}>top tip: include your name at the end of your message</Typography>
                                 <textarea 
                                 type="text"
                                 id="message"

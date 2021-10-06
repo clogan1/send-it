@@ -27,7 +27,6 @@ const useStyles = makeStyles({
     },
     box: {
         padding: '30px 60px',
-        // backgroundColor: 'pink'
 
     },
     header: {
@@ -36,7 +35,6 @@ const useStyles = makeStyles({
         marginBottom: '10px'
     },
     prevBox: {
-        // backgroundColor: 'blue',
     },
     image: {
         width: '300px',
@@ -80,7 +78,6 @@ const useStyles = makeStyles({
           marginTop: '20px',
           backgroundColor: 'white',
           padding: '20px',
-        //   justifyContent: 'center,',
           boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
           borderRadius: '6px',
           minWidth: '270px'
@@ -125,6 +122,11 @@ const useStyles = makeStyles({
     },
     contribBullet: {
         fontSize: '12px'
+    },
+    helper: {
+        fontSize: '12px',
+        fontStyle: 'italic',
+        color: "#A3A3A3"
     }
 
 })
@@ -244,6 +246,8 @@ function EditCardPage( { editCard }) {
                                 />
                             <br></br>
                             <Typography className={classes.labels}>message:</Typography>
+                            <Typography className={classes.helper}>top tip: include your name at the end of your message</Typography>
+
                                 <textarea 
                                 type="text"
                                 id="message"

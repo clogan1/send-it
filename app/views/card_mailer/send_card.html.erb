@@ -6,37 +6,35 @@
     body {
       font-family: 'Trebuchet MS', sans-serif;
       }
-    /* p {
-      padding: 20px; 
-      font-size: 2vh; 
-      color: black
-    } */
 </style>
   </head>
   <body >
-    <table>
+    <table  style="width: 100%; border: 0; cellspacing: 0; cellpadding: 0">
       <tr>
-        <td style="width: 600px">
+        <td style="width: 600px; text-align: center">
         <a href="https://send-it-cards.herokuapp.com/">
           <img src="https://i.ibb.co/x8gbSz6/Send-It-600-x-60-px.png" alt="send it" style="width: 600px">
         </a>
         </td>
       </tr>
       <tr>
-        <td style="width: 600px; background-color: white;">
+        <td style="width: 600px; background-color: white; text-align: center">
           <h3>To: <%= @user_card.recipient_name %></h3>
         </td>
       </tr>
       <tr>
-        <td style="width: 600px; background-color: white; border: solid 1px black;">
+        <td style="width: 600px; background-color: white; text-align: center; margin: auto">
           <img src=<%=@template%>  style="margin: auto; width: 600px"/>
         </td>
       </tr>
       <tr>
-        <td style="width: 600px; background-color: white; color: black; border: solid 1px black; padding: 20px">
+        <td style="width: 600px; background-color: white; color: black; margin: auto; padding: 20px; text-align: center">
+        <p style="margin: auto; width: 600px">
           <%= @user_card.message %>
           <br>
+          <br>
           <%= @contributors %>
+        </p>
         </td>
       </tr>
     </table>

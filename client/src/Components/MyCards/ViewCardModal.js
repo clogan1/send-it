@@ -7,7 +7,6 @@ import {
     Backdrop,
     Fade,
     IconButton,
-    Container
  } from '@material-ui/core';
  import CloseIcon from '@material-ui/icons/Close';
 
@@ -67,7 +66,6 @@ import {
 function ViewCardModal({ card, openViewModal, setOpenViewModal }) {
     const classes = useStyles();
 
-    console.log("from modal:", card)
 
     function handleClose(){
         setOpenViewModal(false)
@@ -96,7 +94,8 @@ function ViewCardModal({ card, openViewModal, setOpenViewModal }) {
                 >
                 <CloseIcon />
             </IconButton>
-            <Grid container spacing={1} className={classes.container}>
+            <Grid container spacing={1} 
+            className={classes.container}>
                 <Grid item xs={6}>
                     <img  src={card.template.art_url} alt={card.id} className={classes.img}/>
                 </Grid>
