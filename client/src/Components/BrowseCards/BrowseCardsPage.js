@@ -73,13 +73,13 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
     const [sort, setSort] = useState('newest')
     const [pageNumber, setPageNumber] = useState(0)
     const [showFilter, setShowFilter] = useState(false)
+    const [pageCount, setPageCount] = useState('')
 
     const templates = useSelector((state) => state.templates.templates);
     const dispatch = useDispatch()
 
-    const cardsPerPage = 25
-    const cardsVisted = pageNumber * cardsPerPage
-    const pageCount = Math.ceil(templates.length / cardsPerPage)
+    let cardsPerPage = 12
+    let cardsVisted = pageNumber * cardsPerPage
 
     useEffect(() => {
       dispatch(getTemplates())
@@ -103,9 +103,25 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
         else if (sort === 'popular'){
             if(first.count_of_user_cards > second.count_of_user_cards) return -1
         }
-    }).slice(cardsVisted, cardsVisted + cardsPerPage)
+    })
+    // .slice(cardsVisted, cardsVisted + cardsPerPage)
 
-    
+    let paginatedCards = displayCards.slice(cardsVisted, cardsVisted + cardsPerPage)
+
+    useEffect(() => {  
+        if(filter.length < 1) {
+            // let allCards = Math.ceil(templates.length / cardsPerPage)
+            setPageCount(2)
+        }
+        else {
+            let newLength = displayCards.length
+            console.log("new lenght:", newLength)
+            let pc = Math.ceil(newLength / cardsPerPage)
+            console.log("page count:",  pc)
+            setPageCount(pc)
+        }
+      }, [filter])
+
     function changePage({ selected }){
         setPageNumber(selected)
     }
@@ -132,23 +148,23 @@ function BrowseCardsPage( { setEditTemplate, categories, setOpenModal } ) {
                     </Box>
                 </Grid>
                 <Grid item xs={10} className={classes.cardContainer}>
-                    <CardList cards={displayCards} 
+                    <CardList cards={paginatedCards} 
                     setEditTemplate={setEditTemplate}
                     setOpenModal={setOpenModal}
                     />
 
                     {(templates.length > cardsPerPage) ? 
                         <ReactPaginate 
-                    previousLabel={"Previous"}
-                    nextLabel={"Next"}
-                    pageCount={pageCount}
-                    onPageChange={changePage}
-                    containerClassName={"paginationButtons"}
-                    previousLinkClassName={"previousButton"}
-                    nextLinkClassName={"nextButton"}
-                    disabledClassName={"pagDisabled"}
-                    activeClassName={"pagActive"}
-                />
+                            previousLabel={"Previous"}
+                            nextLabel={"Next"}
+                            pageCount={pageCount}
+                            onPageChange={changePage}
+                            containerClassName={"paginationButtons"}
+                            previousLinkClassName={"previousButton"}
+                            nextLinkClassName={"nextButton"}
+                            disabledClassName={"pagDisabled"}
+                            activeClassName={"pagActive"}
+                        />
                 :
                 null
             }

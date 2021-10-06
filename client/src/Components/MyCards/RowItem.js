@@ -10,12 +10,14 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import SendIcon from '@material-ui/icons/Send';
 import Tooltip from '@material-ui/core/Tooltip';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import { grey } from '@material-ui/core/colors';
 
 import { useDispatch } from "react-redux";
 import { deleteMyCard, editMyCard, updateContribList } from '../../Redux/Actions/index'
 import InviteContributorsModal from '../InviteContributorsModal';
+import ViewCardModal from '../MyCards/ViewCardModal'
 
 const useStyles = makeStyles({
     prevImage: {
@@ -63,6 +65,7 @@ function RowItem({ card, setEditCard }) {
     const history = useHistory()
     const dispatch = useDispatch()
     const[openContributorModal, setOpenContributorModal] = useState(false)
+    const[openViewModal, setOpenViewModal] = useState(false)
 
     let dateCreated = Date.parse(card.created_at)
     let sendDate = (card.schedule_send) ? Date.parse(card.schedule_send) : null
@@ -91,6 +94,10 @@ function RowItem({ card, setEditCard }) {
     function addContrib(contrib){
         dispatch(updateContribList(contrib))
         console.log("contrib")
+    }
+
+    function handleToggleViewModal(){
+        setOpenViewModal(true)
     }
 
     function handleSendClick(){
@@ -146,7 +153,13 @@ function RowItem({ card, setEditCard }) {
                     </Tooltip>
                     </>
                     :
-                    null
+                    <>
+                    <Tooltip title="view card"> 
+                    <IconButton className={classes.buttonSpace} onClick={handleToggleViewModal}>
+                        <VisibilityIcon fontSize="small" style={{ color: grey[800] }}/>
+                    </IconButton>
+                    </Tooltip>
+                    </>
                 }
 
             </TableCell>
@@ -155,6 +168,11 @@ function RowItem({ card, setEditCard }) {
             setOpenContributorModal={setOpenContributorModal}
             cardId={card.id}
             addContrib={addContrib}
+            />
+            <ViewCardModal 
+                card={card}
+                openViewModal={openViewModal}
+                setOpenViewModal={setOpenViewModal}
             />
         </TableRow>
     )
