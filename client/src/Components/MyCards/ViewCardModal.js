@@ -74,7 +74,7 @@ function ViewCardModal({ card, openViewModal, setOpenViewModal }) {
     let sendDate = (card.schedule_send) ? Date.parse(card.schedule_send) : null
     sendDate = (sendDate) ? new Intl.DateTimeFormat('en-US').format(sendDate) : null
 
-    return (
+    if(card)return (
         <Modal
         className={classes.modal} 
         open={openViewModal}
@@ -83,7 +83,7 @@ function ViewCardModal({ card, openViewModal, setOpenViewModal }) {
         BackdropProps={{
             timeout: 500,
             }}
-    >
+        >
         <Fade
             in={openViewModal}
         >
@@ -129,8 +129,8 @@ function ViewCardModal({ card, openViewModal, setOpenViewModal }) {
             </Grid>
         </div>
         </Fade>
- 
-    </Modal>
+        </Modal>
+   
     )
 }
 

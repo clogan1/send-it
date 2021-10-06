@@ -8,7 +8,9 @@ import {
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import Tooltip from '@material-ui/core/Tooltip';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import { grey } from '@material-ui/core/colors';
+import ViewCardModal from '../MyCards/ViewCardModal'
 
 const useStyles = makeStyles({
     prevImage: {
@@ -60,6 +62,8 @@ function RowItemContrib({ card, contrib, setEditCard, setEditContrib}) {
     const history = useHistory()
     const [imgUrl, setImgUrl] = useState('')
     const [isLoading, setIsLoading] = useState(true)
+    const[modalCard, setModalCard]= useState('')
+    const[openViewModal, setOpenViewModal] = useState(false)
 
     useEffect(()=> {
         fetch(`/templates/${card.template_id}`)
@@ -71,6 +75,7 @@ function RowItemContrib({ card, contrib, setEditCard, setEditContrib}) {
 
     }, [])
 
+    // console.log("from contrib tab:", card)
 
     let dateCreated = Date.parse(card.created_at)
     let sendDate = (card.schedule_send) ? Date.parse(card.schedule_send) : null
@@ -83,6 +88,17 @@ function RowItemContrib({ card, contrib, setEditCard, setEditContrib}) {
         setEditCard(card)
         setEditContrib(contrib)
         history.push('/editcontributor')
+    }
+
+    function handleToggleViewModal(){
+        fetch(`/user_cards/${card.id}`)
+        .then(res => res.json())
+        .then(cardData => {
+            // console.log(cardData)
+            setModalCard(cardData)
+        }).then(
+            setOpenViewModal(true)
+        )
     }
 
 
@@ -103,9 +119,26 @@ return (
                     </Tooltip>
                     </>
                     :
-                    null
+                    <>
+                    <Tooltip title="view card"> 
+                    <IconButton className={classes.buttonSpace} onClick={handleToggleViewModal}>
+                        <VisibilityIcon fontSize="small" style={{ color: grey[800] }}/>
+                    </IconButton>
+                    </Tooltip>
+                    </>
                 }
             </TableCell>
+            {(modalCard) ?
+                <>
+                <ViewCardModal 
+                card={modalCard}
+                openViewModal={openViewModal}
+                setOpenViewModal={setOpenViewModal}
+                />
+                </>
+                :
+                null
+            }   
         </TableRow>
     )
 }

@@ -13,7 +13,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import { grey } from '@material-ui/core/colors';
-
 import { useDispatch } from "react-redux";
 import { deleteMyCard, editMyCard, updateContribList } from '../../Redux/Actions/index'
 import InviteContributorsModal from '../InviteContributorsModal';
