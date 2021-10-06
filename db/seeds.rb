@@ -9,12 +9,6 @@ artist = Role.create(name: "Artist")
 
 puts 'done creating roles'
 
-puts 'creating users'
-
-claire = User.create(username: 'clogan', email: 'clairelogan16@gmail.com', password: 'flatiron2021', avatar_url: 'https://avatars.githubusercontent.com/u/77256559?v=4', role_id: artist.id)
-
-puts 'done creating users'
-
 puts 'generating categories'
 birthday = Category.create(name: 'Birthday', emoji: '🎂')
 thank_you = Category.create(name: 'Thank You', emoji: '🙏')
