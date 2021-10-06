@@ -51,7 +51,7 @@ function App() {
           <Route path='/editcontributor'>
             <EditContributor editCard={editCard} editContrib={editContrib} />
           </Route>
-          <Route path='/mycards'>
+          <Route path='/cards'>
             <MyCardsPage 
               setEditCard={setEditCard}
               setEditContrib={setEditContrib} 

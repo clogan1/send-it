@@ -186,11 +186,11 @@ function NavBar( { openModal, setOpenModal } ) {
                         :
                         null
                 }
-                <Box className={location.pathname === "/mycards" ? classes.activeBox : classes.box}>
+                <Box className={location.pathname === "/cards" ? classes.activeBox : classes.box}>
                     <Typography
                         component={NavLink}
-                        to="/mycards"
-                        className={location.pathname === "/mycards" ? classes.activeText : classes.boxText}
+                        to="/cards"
+                        className={location.pathname === "/cards" ? classes.activeText : classes.boxText}
                     >
                         my cards
                     </Typography>

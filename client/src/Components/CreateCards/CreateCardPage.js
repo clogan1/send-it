@@ -141,7 +141,7 @@ function CreateCardPage( { editTemplate }) {
             if(res.ok){
                 res.json().then(card => {
                     dispatch(addMyCard(card))
-                    history.push('/mycards')
+                    history.push('/cards')
                 })
             }
             else {

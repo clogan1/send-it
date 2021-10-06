@@ -155,7 +155,7 @@ function EditContributor( { editCard, editContrib }) {
 
 
     function handleCancel(){
-        history.push('/mycards')
+        history.push('/cards')
     }
 
 
@@ -172,7 +172,7 @@ function EditContributor( { editCard, editContrib }) {
                 if(res.ok){
                     res.json().then(contrib => {
                         dispatch(editMyContributors(contrib))
-                        history.push('/mycards')
+                        history.push('/cards')
                     })
                 }
                 else {

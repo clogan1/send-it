@@ -154,7 +154,7 @@ function EditCardPage( { editCard }) {
     }, [])
 
     function handleCancel(){
-        history.push('/mycards')
+        history.push('/cards')
     }
 
     function handleContributorClick(e){
@@ -186,7 +186,7 @@ function EditCardPage( { editCard }) {
             if(res.ok){
                 res.json().then(card => {
                     dispatch(editMyCard(card))
-                    history.push('/mycards')
+                    history.push('/cards')
                 })
             }
             else {
