@@ -61,7 +61,7 @@ npm start --prefix client
 
 <p align="center"><img src="./client/src/Images/actions.gif" alt="logo" width="600px" margin="auto"></p>
 
-### Special Artist User Role
+### Artist User Role
 - Add new card covers
 
 
