@@ -55,6 +55,7 @@ npm start --prefix client
 - Edit or delete card prior to sending
 - Send finished card to recipient via email
 <p align="center"><img src="./client/src/Images/email.jpg" alt="logo" width="200px" margin="auto"></p>
+
 - View all cards created by yourself or cards you have been invited to sign
 - View card details of cards previously sent
 
